@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://osoleil-marseillan.fr/sitemap.xml
