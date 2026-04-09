@@ -1206,7 +1206,7 @@ ul {
    RESPONSIVE
    ============================================ */
 
-/* --- Bouton flottant mobile (app-like) --- */
+/* --- Boutons flottants mobile (app-like) --- */
 .mobile-cta {
   display: none;
 }
@@ -1214,61 +1214,65 @@ ul {
 @media (max-width: 768px) {
   .mobile-cta {
     display: flex;
+    gap: 10px;
     position: fixed;
-    bottom: 20px;
-    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-    left: 20px;
-    right: 20px;
+    bottom: 24px;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 300;
-    background: var(--color-dark);
-    border-radius: 56px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.12);
-    overflow: hidden;
+    pointer-events: none;
   }
 
   .mobile-cta a {
-    flex: 1;
+    pointer-events: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 16px 12px;
+    height: 52px;
+    padding: 0 22px;
+    border-radius: 50px;
     color: var(--color-white);
-    font-family: var(--font-heading);
-    font-weight: 500;
-    font-size: 0.85rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.88rem;
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    transition: background var(--transition-fast);
+    letter-spacing: 0.01em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .mobile-cta a:first-child {
     background: var(--color-primary);
-    border-radius: 56px 0 0 56px;
+    box-shadow:
+      0 4px 16px rgba(198, 93, 52, 0.4),
+      0 1px 4px rgba(0, 0, 0, 0.1);
   }
 
   .mobile-cta a:last-child {
-    border-radius: 0 56px 56px 0;
+    background: rgba(30, 21, 15, 0.75);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.2),
+      0 1px 4px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
 
-  .mobile-cta a:hover,
   .mobile-cta a:active {
+    transform: scale(0.95);
     color: var(--color-white);
-    filter: brightness(1.1);
-  }
-
-  .mobile-cta a + a {
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .mobile-cta .cta-icon {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
+    line-height: 1;
   }
 
   body {
-    padding-bottom: 80px;
-    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: 88px;
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
   }
 }
 
