@@ -781,6 +781,13 @@ ul {
   text-align: center;
 }
 
+.menu-disclaimer {
+  margin-bottom: 32px;
+  font-size: 0.82rem;
+  opacity: 0.7;
+  margin-top: 0;
+}
+
 /* ============================================
    CONTACT
    ============================================ */
@@ -1321,24 +1328,47 @@ ul {
 
   /* ====== CARTE MOBILE ====== */
 
-  /* Nav carte : plus compact */
+  /* Masquer le breadcrumb sur la carte mobile */
+  .breadcrumb {
+    display: none;
+  }
+
+  /* Page header carte : compact sur mobile */
+  .page-header {
+    padding: 40px 20px 28px;
+  }
+
+  .page-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .page-header p {
+    font-size: 0.9rem;
+  }
+
+  /* Nav carte sticky juste sous le header */
   .menu-nav {
-    top: 56px; /* header plus petit sur mobile */
+    top: 56px;
   }
 
   .menu-nav-inner {
-    padding: 8px 12px;
-    gap: 6px;
+    padding: 10px 16px;
+    gap: 8px;
   }
 
   .menu-nav-item {
-    padding: 7px 14px;
-    font-size: 0.75rem;
+    padding: 10px 18px;
+    font-size: 0.82rem;
   }
 
-  /* Sections carte : moins d'espace */
+  /* Moins d'espace avant le premier item */
+  .section {
+    padding: 40px 0;
+  }
+
+  /* Sections carte */
   .menu-section {
-    scroll-margin-top: 110px;
+    scroll-margin-top: 105px;
   }
 
   .menu-section + .menu-section {
@@ -1346,41 +1376,56 @@ ul {
   }
 
   .menu-category {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     margin-bottom: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 12px;
+    padding-left: 4px;
   }
 
-  /* Items : layout empilé pour petits écrans */
+  /* Items : généreux, lisibles, modernes */
   .menu-item {
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
-    padding: 14px 12px;
-    border-bottom: 1px solid rgba(232, 221, 209, 0.4);
-    border-radius: 0;
+    gap: 6px;
+    padding: 18px 16px;
+    margin: 0 -4px;
+    border-bottom: 1px solid rgba(232, 221, 209, 0.5);
+    border-radius: var(--radius-sm);
+  }
+
+  .menu-item:active {
+    background: rgba(245, 237, 227, 0.6);
   }
 
   .menu-item:last-child {
     border-bottom: none;
   }
 
-  .menu-item-price {
-    margin-left: 0;
-    font-size: 1rem;
-  }
-
   .menu-item-name {
-    font-size: 0.98rem;
+    font-size: 1.08rem;
     line-height: 1.4;
+    letter-spacing: -0.01em;
   }
 
   .menu-item-desc {
-    font-size: 0.84rem;
-    line-height: 1.5;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    opacity: 0.75;
   }
 
-  /* Container carte : moins de padding latéral */
+  .menu-item-price {
+    margin-left: 0;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    margin-top: 2px;
+  }
+
+  .menu-note {
+    font-size: 0.88rem;
+    padding: 0 4px;
+  }
+
+  /* Container carte */
   .section .container {
     padding: 0 16px;
   }
@@ -1416,25 +1461,25 @@ ul {
     grid-template-columns: 1fr;
   }
 
-  /* Carte ultra-compact sur petit mobile */
+  /* Carte sur petit mobile */
   .menu-nav {
     top: 50px;
   }
 
   .menu-nav-item {
-    padding: 6px 12px;
-    font-size: 0.72rem;
+    padding: 9px 16px;
+    font-size: 0.78rem;
   }
 
   .menu-item {
-    padding: 12px 8px;
+    padding: 16px 12px;
   }
 
-  .menu-category {
-    font-size: 1.15rem;
+  .menu-item-name {
+    font-size: 1.02rem;
   }
 
-  .menu-section + .menu-section {
-    margin-top: 40px;
+  .menu-item-price {
+    font-size: 1.05rem;
   }
 }
