@@ -62,8 +62,57 @@
     ]
   }
   </script>
+
+  <!-- Schema.org — Restaurant (doublon volontaire pour crawl multi-pages) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Brasserie O'Soleil",
+    "description": "Huîtres de Bouzigues, plateaux de fruits de mer et cuisine méditerranéenne sur le port de Marseillan, face à l'étang de Thau.",
+    "url": "https://osoleil-marseillan.fr",
+    "telephone": "+33467017401",
+    "email": "o.soleil@yahoo.fr",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "34 Quai Antonin Gros",
+      "addressLocality": "Marseillan",
+      "postalCode": "34340",
+      "addressRegion": "Occitanie",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 43.3485,
+      "longitude": 3.5377
+    },
+    "servesCuisine": ["Fruits de mer", "Huîtres", "Méditerranéenne", "Française"],
+    "priceRange": "€€",
+    "hasMenu": "https://osoleil-marseillan.fr/carte.html",
+    "acceptsReservations": true,
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "09:30",
+        "closes": "14:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "19:00",
+        "closes": "22:00"
+      }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/brasserieosoleil/",
+      "https://www.facebook.com/BrasserieOSoleil/"
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Aller au contenu</a>
 
   <!-- ========== HEADER ========== -->
   <header class="site-header">
@@ -86,6 +135,13 @@
     <div class="nav-overlay" id="nav-overlay"></div>
   </header>
 
+  <!-- ========== BREADCRUMB ========== -->
+  <nav class="breadcrumb" aria-label="Fil d'Ariane">
+    <a href="index.html">Accueil</a>
+    <span aria-hidden="true">›</span>
+    <span>Contact &amp; Accès</span>
+  </nav>
+
   <!-- ========== PAGE HEADER ========== -->
   <section class="page-header">
     <h1>Contact &amp; Accès — Port de Marseillan</h1>
@@ -93,7 +149,7 @@
   </section>
 
   <!-- ========== CONTACT ========== -->
-  <main class="section">
+  <main id="main-content" class="section">
     <div class="container">
       <div class="contact-grid">
 
@@ -169,8 +225,8 @@
   <!-- ========== ACCÈS ========== -->
   <section class="section section-alt">
     <div class="container">
-      <h2 class="section-title">Comment venir</h2>
-      <p class="section-subtitle">Marseillan est situé entre Sète et Agde, au bord de l'étang de Thau.</p>
+      <h2 class="section-title">Où manger des fruits de mer à Marseillan ?</h2>
+      <p class="section-subtitle">La Brasserie O'Soleil se situe entre Sète et Agde, sur le port de Marseillan au bord de l'étang de Thau.</p>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon" aria-hidden="true">&#128663;</div>
@@ -196,9 +252,11 @@
     <div class="footer-inner">
       <div class="footer-col">
         <h4>Brasserie O'Soleil</h4>
-        <p>34 Quai Antonin Gros<br>34340 Marseillan</p>
-        <p style="margin-top: 8px;"><a href="tel:0467017401">04 67 01 74 01</a></p>
-        <p><a href="mailto:o.soleil@yahoo.fr">o.soleil@yahoo.fr</a></p>
+        <address>
+          34 Quai Antonin Gros<br>34340 Marseillan<br>
+          <a href="tel:0467017401">04 67 01 74 01</a><br>
+          <a href="mailto:o.soleil@yahoo.fr">o.soleil@yahoo.fr</a>
+        </address>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>

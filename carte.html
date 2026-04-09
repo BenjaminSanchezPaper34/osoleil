@@ -73,6 +73,16 @@
     "hasMenuSection": [
       {
         "@type": "MenuSection",
+        "name": "Formule du Midi",
+        "description": "Du lundi au vendredi, hors week-end, jours fériés et événements",
+        "hasMenuItem": [
+          {"@type": "MenuItem", "name": "Entrée + Plat + Dessert", "offers": {"@type": "Offer", "price": "25.00", "priceCurrency": "EUR"}},
+          {"@type": "MenuItem", "name": "Entrée + Plat ou Plat + Dessert", "offers": {"@type": "Offer", "price": "22.00", "priceCurrency": "EUR"}},
+          {"@type": "MenuItem", "name": "Plat seul", "offers": {"@type": "Offer", "price": "17.00", "priceCurrency": "EUR"}}
+        ]
+      },
+      {
+        "@type": "MenuSection",
         "name": "Menu O'Soleil",
         "hasMenuItem": [
           {"@type": "MenuItem", "name": "Entrée + Plat + Dessert", "offers": {"@type": "Offer", "price": "32.50", "priceCurrency": "EUR"}},
@@ -138,6 +148,7 @@
   </script>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Aller au contenu</a>
 
   <!-- ========== HEADER ========== -->
   <header class="site-header">
@@ -160,6 +171,13 @@
     <div class="nav-overlay" id="nav-overlay"></div>
   </header>
 
+  <!-- ========== BREADCRUMB ========== -->
+  <nav class="breadcrumb" aria-label="Fil d'Ariane">
+    <a href="index.html">Accueil</a>
+    <span aria-hidden="true">›</span>
+    <span>La Carte</span>
+  </nav>
+
   <!-- ========== PAGE HEADER ========== -->
   <section class="page-header">
     <h1>Carte — Fruits de Mer, Huîtres &amp; Cuisine Méditerranéenne</h1>
@@ -167,7 +185,7 @@
   </section>
 
   <!-- ========== CARTE RESTAURANT ========== -->
-  <main class="section">
+  <main id="main-content" class="section">
     <div class="container">
 
       <p class="menu-note" style="margin-bottom: 48px;">
@@ -1598,9 +1616,11 @@
     <div class="footer-inner">
       <div class="footer-col">
         <h4>Brasserie O'Soleil</h4>
-        <p>34 Quai Antonin Gros<br>34340 Marseillan</p>
-        <p style="margin-top: 8px;"><a href="tel:0467017401">04 67 01 74 01</a></p>
-        <p><a href="mailto:o.soleil@yahoo.fr">o.soleil@yahoo.fr</a></p>
+        <address>
+          34 Quai Antonin Gros<br>34340 Marseillan<br>
+          <a href="tel:0467017401">04 67 01 74 01</a><br>
+          <a href="mailto:o.soleil@yahoo.fr">o.soleil@yahoo.fr</a>
+        </address>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>

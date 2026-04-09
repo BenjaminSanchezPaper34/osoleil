@@ -703,6 +703,57 @@ ul {
   color: var(--color-text-light);
 }
 
+/* --- Skip to content (accessibilité) --- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 999;
+  padding: 8px 16px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+/* --- Breadcrumb visible --- */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+}
+
+.breadcrumb a {
+  color: var(--color-text-light);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.breadcrumb span[aria-hidden] {
+  color: var(--color-border);
+  font-size: 0.75rem;
+}
+
+/* --- Adresse sémantique footer --- */
+.site-footer address {
+  font-style: normal;
+  line-height: 2;
+}
+
 /* --- Page header interne --- */
 .page-header {
   background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary-light));
