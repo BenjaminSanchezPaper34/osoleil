@@ -640,8 +640,68 @@ ul {
 /* ============================================
    CARTE / MENU
    ============================================ */
+
+/* --- Navigation sommaire carte (sticky) --- */
+.menu-nav {
+  position: sticky;
+  top: 63px; /* hauteur du header */
+  z-index: 90;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.menu-nav-inner {
+  display: flex;
+  gap: 4px;
+  padding: 10px 16px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.menu-nav-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.menu-nav-item {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-light);
+  border-radius: 50px;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.menu-nav-item:hover {
+  color: var(--color-primary);
+  background: rgba(198, 93, 52, 0.06);
+}
+
+.menu-nav-item.active {
+  color: var(--color-white);
+  background: var(--color-primary);
+}
+
+/* Scroll target offset pour compenser les headers sticky */
+.menu-section {
+  scroll-margin-top: 120px;
+}
+
 .menu-section + .menu-section {
-  margin-top: 72px;
+  margin-top: 64px;
 }
 
 .menu-category {
@@ -1258,6 +1318,72 @@ ul {
   .page-header {
     padding: 56px 24px 40px;
   }
+
+  /* ====== CARTE MOBILE ====== */
+
+  /* Nav carte : plus compact */
+  .menu-nav {
+    top: 56px; /* header plus petit sur mobile */
+  }
+
+  .menu-nav-inner {
+    padding: 8px 12px;
+    gap: 6px;
+  }
+
+  .menu-nav-item {
+    padding: 7px 14px;
+    font-size: 0.75rem;
+  }
+
+  /* Sections carte : moins d'espace */
+  .menu-section {
+    scroll-margin-top: 110px;
+  }
+
+  .menu-section + .menu-section {
+    margin-top: 48px;
+  }
+
+  .menu-category {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+  }
+
+  /* Items : layout empilé pour petits écrans */
+  .menu-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 14px 12px;
+    border-bottom: 1px solid rgba(232, 221, 209, 0.4);
+    border-radius: 0;
+  }
+
+  .menu-item:last-child {
+    border-bottom: none;
+  }
+
+  .menu-item-price {
+    margin-left: 0;
+    font-size: 1rem;
+  }
+
+  .menu-item-name {
+    font-size: 0.98rem;
+    line-height: 1.4;
+  }
+
+  .menu-item-desc {
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  /* Container carte : moins de padding latéral */
+  .section .container {
+    padding: 0 16px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1288,5 +1414,27 @@ ul {
 
   .horaires-wrapper {
     grid-template-columns: 1fr;
+  }
+
+  /* Carte ultra-compact sur petit mobile */
+  .menu-nav {
+    top: 50px;
+  }
+
+  .menu-nav-item {
+    padding: 6px 12px;
+    font-size: 0.72rem;
+  }
+
+  .menu-item {
+    padding: 12px 8px;
+  }
+
+  .menu-category {
+    font-size: 1.15rem;
+  }
+
+  .menu-section + .menu-section {
+    margin-top: 40px;
   }
 }
