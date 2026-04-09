@@ -451,6 +451,33 @@ ul {
   margin-right: auto;
 }
 
+/* Blocs de texte SEO */
+.text-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.text-content p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  margin-bottom: 20px;
+}
+
+.text-content p:last-child {
+  margin-bottom: 0;
+}
+
+.text-content a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.text-content a:hover {
+  color: var(--color-accent);
+}
+
 /* Décoration titre */
 .section-title::after {
   content: '';
