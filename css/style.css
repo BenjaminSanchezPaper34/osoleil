@@ -1206,7 +1206,7 @@ ul {
    RESPONSIVE
    ============================================ */
 
-/* --- Barre sticky mobile --- */
+/* --- Bouton flottant mobile (app-like) --- */
 .mobile-cta {
   display: none;
 }
@@ -1215,13 +1215,15 @@ ul {
   .mobile-cta {
     display: flex;
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 20px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    left: 20px;
+    right: 20px;
     z-index: 300;
     background: var(--color-dark);
-    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.25);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 56px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
   }
 
   .mobile-cta a {
@@ -1230,11 +1232,11 @@ ul {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 16px;
+    padding: 16px 12px;
     color: var(--color-white);
     font-family: var(--font-heading);
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -1243,26 +1245,46 @@ ul {
 
   .mobile-cta a:first-child {
     background: var(--color-primary);
+    border-radius: 56px 0 0 56px;
   }
 
-  .mobile-cta a:hover {
+  .mobile-cta a:last-child {
+    border-radius: 0 56px 56px 0;
+  }
+
+  .mobile-cta a:hover,
+  .mobile-cta a:active {
     color: var(--color-white);
+    filter: brightness(1.1);
   }
 
   .mobile-cta a + a {
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .mobile-cta .cta-icon {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 
   body {
-    padding-bottom: 56px;
+    padding-bottom: 80px;
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
   }
 }
 
 @media (max-width: 768px) {
+
+  /* ====== BASE APP-LIKE ====== */
+
+  body {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1.6;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
   .nav-toggle {
     display: block;
   }
@@ -1300,8 +1322,9 @@ ul {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     z-index: 150;
   }
 
@@ -1309,7 +1332,8 @@ ul {
     display: block;
   }
 
-  /* Hero */
+  /* ====== HERO ====== */
+
   .hero {
     min-height: 70vh;
   }
@@ -1318,68 +1342,174 @@ ul {
     display: none;
   }
 
-  /* Sections */
+  .hero-content {
+    padding: 60px 20px;
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  /* ====== SECTIONS ====== */
+
   .section {
-    padding: 56px 0;
+    padding: 48px 0;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 10px;
   }
 
   .section-subtitle {
-    margin-bottom: 40px;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 36px;
   }
+
+  .text-content p {
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  /* ====== FEATURES ====== */
 
   .features-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
   }
 
   .feature-card {
-    padding: 36px 28px;
+    padding: 28px 24px;
+    border-radius: 16px;
   }
 
-  /* Contact */
+  .feature-card:hover {
+    transform: none;
+  }
+
+  .feature-icon {
+    font-size: 2.2rem;
+    margin-bottom: 14px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .feature-card p {
+    font-size: 0.93rem;
+    line-height: 1.6;
+  }
+
+  /* ====== HORAIRES ====== */
+
+  .horaire-block {
+    padding: 24px 20px;
+    border-radius: 14px;
+  }
+
+  .horaire-block h3 {
+    font-size: 1.05rem;
+  }
+
+  .horaire-block p {
+    font-size: 1rem;
+  }
+
+  /* ====== FAQ ====== */
+
+  .faq-item summary {
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 16px 0;
+  }
+
+  .faq-item p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ====== CTA ====== */
+
+  .cta-section {
+    padding: 56px 20px;
+    border-radius: 0;
+  }
+
+  .cta-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .cta-buttons .btn {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 0.85rem;
+  }
+
+  /* ====== CONTACT ====== */
+
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
   }
 
-  /* Footer */
+  .contact-item {
+    padding: 14px 0;
+  }
+
+  /* ====== FOOTER ====== */
+
   .footer-inner {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 32px;
+    padding: 0 20px;
   }
 
-  /* Page header */
+  /* ====== PAGE HEADER ====== */
+
   .page-header {
-    padding: 56px 24px 40px;
-  }
-
-  /* ====== CARTE MOBILE ====== */
-
-  /* Masquer le breadcrumb sur la carte mobile */
-  .breadcrumb {
-    display: none;
-  }
-
-  /* Page header carte : compact sur mobile */
-  .page-header {
-    padding: 40px 20px 28px;
+    padding: 44px 20px 32px;
   }
 
   .page-header h1 {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
   }
 
   .page-header p {
     font-size: 0.9rem;
+    line-height: 1.6;
   }
 
-  /* Nav carte sticky juste sous le header */
+  .breadcrumb {
+    display: none;
+  }
+
+  /* ====== CARTE / MENU ====== */
+
   .menu-nav {
     top: 56px;
   }
 
   .menu-nav-inner {
-    padding: 10px 16px;
+    padding: 10px 20px;
     gap: 8px;
   }
 
@@ -1388,40 +1518,36 @@ ul {
     font-size: 0.82rem;
   }
 
-  /* Moins d'espace avant le premier item */
-  .section {
-    padding: 40px 0;
-  }
-
-  /* Sections carte */
   .menu-section {
-    scroll-margin-top: 105px;
+    scroll-margin-top: 110px;
   }
 
   .menu-section + .menu-section {
-    margin-top: 48px;
+    margin-top: 44px;
   }
 
   .menu-category {
-    font-size: 1.4rem;
-    margin-bottom: 20px;
+    font-size: 1.3rem;
+    margin-bottom: 18px;
     padding-bottom: 12px;
-    padding-left: 4px;
+    padding-left: 0;
   }
 
-  /* Items : généreux, lisibles, modernes */
   .menu-item {
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
-    padding: 18px 16px;
-    margin: 0 -4px;
+    gap: 5px;
+    padding: 16px 0;
+    margin: 0;
     border-bottom: 1px solid rgba(232, 221, 209, 0.5);
-    border-radius: var(--radius-sm);
+    border-radius: 0;
+    transition: background 0.15s ease;
   }
 
   .menu-item:active {
-    background: rgba(245, 237, 227, 0.6);
+    background: rgba(245, 237, 227, 0.5);
+    margin: 0 -20px;
+    padding: 16px 20px;
   }
 
   .menu-item:last-child {
@@ -1429,32 +1555,34 @@ ul {
   }
 
   .menu-item-name {
-    font-size: 1.08rem;
-    line-height: 1.4;
+    font-size: 1.05rem;
+    line-height: 1.45;
     letter-spacing: -0.01em;
   }
 
   .menu-item-desc {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     line-height: 1.55;
-    opacity: 0.75;
+    opacity: 0.6;
   }
 
   .menu-item-price {
     margin-left: 0;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+    font-weight: 600;
     color: var(--color-primary);
-    margin-top: 2px;
+    margin-top: 4px;
   }
 
   .menu-note {
     font-size: 0.88rem;
-    padding: 0 4px;
+    line-height: 1.55;
+    padding: 0;
   }
 
-  /* Container carte */
-  .section .container {
-    padding: 0 16px;
+  .menu-disclaimer {
+    font-size: 0.85rem;
+    opacity: 0.6;
   }
 }
 
@@ -1472,41 +1600,28 @@ ul {
     padding: 10px 16px;
   }
 
-  .logo {
-    font-size: 1.2rem;
-  }
-
   .logo img {
-    height: 40px;
+    height: 38px;
   }
 
   .hero h1 {
-    font-size: clamp(2.2rem, 8vw, 3.2rem);
+    font-size: clamp(2rem, 8vw, 3rem);
   }
 
   .horaires-wrapper {
     grid-template-columns: 1fr;
   }
 
-  /* Carte sur petit mobile */
   .menu-nav {
     top: 50px;
+  }
+
+  .menu-nav-inner {
+    padding: 8px 16px;
   }
 
   .menu-nav-item {
     padding: 9px 16px;
     font-size: 0.78rem;
-  }
-
-  .menu-item {
-    padding: 16px 12px;
-  }
-
-  .menu-item-name {
-    font-size: 1.02rem;
-  }
-
-  .menu-item-price {
-    font-size: 1.05rem;
   }
 }
