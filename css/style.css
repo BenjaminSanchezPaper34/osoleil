@@ -642,10 +642,20 @@ ul {
   color: var(--color-text-light);
 }
 
-/* Carrousel infini autoplay */
+/* Carrousel avis — scroll + autoplay */
 .reviews-carousel {
   overflow: hidden;
   margin-bottom: 40px;
+  position: relative;
+  cursor: grab;
+}
+
+.reviews-carousel:active {
+  cursor: grabbing;
+}
+
+.reviews-carousel.is-dragging {
+  cursor: grabbing;
 }
 
 .reviews-track {
@@ -653,10 +663,17 @@ ul {
   gap: 20px;
   width: max-content;
   animation: reviews-scroll 40s linear infinite;
+  will-change: transform;
 }
 
-.reviews-carousel:hover .reviews-track {
-  animation-play-state: paused;
+.reviews-carousel.is-dragging .reviews-track,
+.reviews-carousel.is-touching .reviews-track {
+  animation: none !important;
+}
+
+.reviews-track a,
+.reviews-carousel.is-dragging .review-card {
+  pointer-events: none;
 }
 
 @keyframes reviews-scroll {
