@@ -126,6 +126,12 @@ ul {
     transform: none;
     transition: none;
   }
+
+  .reviews-track {
+    animation: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* ============================================
@@ -636,7 +642,7 @@ ul {
   color: var(--color-text-light);
 }
 
-/* Carrousel horizontal */
+/* Carrousel infini autoplay */
 .reviews-carousel {
   overflow: hidden;
   margin-bottom: 40px;
@@ -645,16 +651,17 @@ ul {
 .reviews-track {
   display: flex;
   gap: 20px;
-  padding: 0 24px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  width: max-content;
+  animation: reviews-scroll 40s linear infinite;
 }
 
-.reviews-track::-webkit-scrollbar {
-  display: none;
+.reviews-carousel:hover .reviews-track {
+  animation-play-state: paused;
+}
+
+@keyframes reviews-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .review-card {
@@ -666,7 +673,6 @@ ul {
   min-width: 300px;
   max-width: 340px;
   flex-shrink: 0;
-  scroll-snap-align: start;
   position: relative;
   transition: box-shadow var(--transition);
 }
@@ -753,6 +759,10 @@ ul {
 .partners-grid a:hover,
 .partner-link:hover {
   opacity: 0.75;
+}
+
+.partner-logo {
+  margin-bottom: 4px;
 }
 
 .partner-name {
@@ -1624,13 +1634,13 @@ ul {
   }
 
   .reviews-track {
-    padding: 0 20px;
     gap: 14px;
+    animation-duration: 30s;
   }
 
   .review-card {
     min-width: 270px;
-    max-width: 300px;
+    max-width: 290px;
     padding: 24px 20px;
     border-radius: 14px;
   }
