@@ -182,6 +182,15 @@ ul {
   width: auto;
 }
 
+.logo .logo-banner {
+  height: 40px;
+  display: block;
+}
+
+.logo .logo-icon {
+  display: none;
+}
+
 .logo span {
   color: var(--color-primary);
 }
@@ -662,7 +671,7 @@ ul {
   display: flex;
   gap: 20px;
   width: max-content;
-  animation: reviews-scroll 40s linear infinite;
+  animation: reviews-scroll 120s linear infinite;
   will-change: transform;
 }
 
@@ -795,14 +804,14 @@ ul {
 }
 
 .partners-grid img {
-  height: 28px;
+  height: 32px;
   width: auto;
-  filter: grayscale(100%);
-  transition: filter var(--transition-fast);
+  opacity: 0.55;
+  transition: opacity var(--transition-fast);
 }
 
 .partners-grid a:hover img {
-  filter: grayscale(0%);
+  opacity: 1;
 }
 
 /* ============================================
@@ -1539,6 +1548,18 @@ ul {
 
   .nav-overlay.open {
     display: block;
+  }
+
+  /* ====== LOGO MOBILE ====== */
+
+  .logo .logo-banner {
+    display: none;
+  }
+
+  .logo .logo-icon {
+    display: block;
+    height: 36px;
+    width: 36px;
   }
 
   /* ====== HERO ====== */
