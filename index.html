@@ -91,9 +91,9 @@
     "currenciesAccepted": "EUR",
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.2",
+      "ratingValue": "4.3",
       "bestRating": "5",
-      "ratingCount": "1399"
+      "ratingCount": "1599"
     }
   }
   </script>
@@ -356,9 +356,9 @@
       <h2 class="section-title reveal">Ce que disent nos clients</h2>
       <div class="reviews-header reveal">
         <div class="reviews-score">
-          <span class="reviews-rating">4,2</span>
-          <span class="reviews-stars" aria-label="4,2 étoiles sur 5">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          <span class="reviews-count">1&nbsp;399 avis Google</span>
+          <span class="reviews-rating" data-elfsight-rating>4,3</span>
+          <span class="reviews-stars" aria-label="4,3 étoiles sur 5">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <span class="reviews-count"><span data-elfsight-count>1&nbsp;599</span> avis Google</span>
         </div>
       </div>
     </div>
@@ -646,7 +646,14 @@
     <a href="carte.html"><span class="cta-icon" aria-hidden="true">&#127860;</span> La Carte</a>
   </div>
 
+  <!-- Elfsight Google Reviews (widget caché, sert uniquement à récupérer la note en temps réel) -->
+  <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none;">
+    <div class="elfsight-app-4c165ed5-c825-4c97-8625-f0610a7a37d9"></div>
+  </div>
+  <script src="https://elfsightcdn.com/platform.js" async></script>
+
   <script src="js/main.js"></script>
+  <script src="js/google-rating.js" defer></script>
 
 </body>
 </html>
