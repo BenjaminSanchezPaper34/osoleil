@@ -705,10 +705,6 @@ ul {
   background: var(--color-sand);
 }
 
-.gallery-item-tall {
-  grid-row: span 2;
-}
-
 .gallery-item picture,
 .gallery-item img {
   width: 100%;
