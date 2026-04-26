@@ -217,7 +217,16 @@
 
   <!-- ========== HERO ========== -->
   <section class="hero">
-    <div class="hero-bg" style="background-image: url('img/hero.jpg');"></div>
+    <picture class="hero-bg">
+      <source type="image/webp"
+              srcset="img/web/hero-port-marseillan-800.webp 800w, img/web/hero-port-marseillan-1280.webp 1280w, img/web/hero-port-marseillan-1920.webp 1920w"
+              sizes="100vw">
+      <img src="img/web/hero-port-marseillan-1280.jpg"
+           alt="Vue aérienne du port de Marseillan, restaurant Brasserie O'Soleil"
+           loading="eager"
+           fetchpriority="high"
+           width="1920" height="1280">
+    </picture>
     <div class="hero-content">
       <h1>Brasserie O'Soleil</h1>
       <p>Huîtres de Bouzigues, plateaux de fruits de mer &amp; cuisine méditerranéenne.<br>
@@ -241,16 +250,28 @@
       </p>
       <div class="features-grid reveal-stagger">
         <div class="feature-card">
+          <picture class="feature-card-image">
+            <source type="image/webp" srcset="img/web/plateau-fruits-de-mer-800.webp 800w, img/web/plateau-fruits-de-mer-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+            <img src="img/web/plateau-fruits-de-mer-800.jpg" srcset="img/web/plateau-fruits-de-mer-800.jpg 800w, img/web/plateau-fruits-de-mer-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Plateau de fruits de mer servi en terrasse à la Brasserie O'Soleil" loading="lazy" width="1200" height="800">
+          </picture>
           <div class="feature-icon" aria-hidden="true">&#129450;</div>
           <h3>Huîtres &amp; fruits de mer</h3>
           <p>Huîtres N°3 de Bouzigues, moules, coquillages, plateaux de fruits de mer de 25&nbsp;€ à 85&nbsp;€ — tout droit sortis de l'étang de Thau. <a href="carte.html#nos-plateaux-de-fruits-de-mer">Voir nos plateaux</a>.</p>
         </div>
         <div class="feature-card">
+          <picture class="feature-card-image">
+            <source type="image/webp" srcset="img/web/daurade-plancha-800.webp 800w, img/web/daurade-plancha-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+            <img src="img/web/daurade-plancha-800.jpg" srcset="img/web/daurade-plancha-800.jpg 800w, img/web/daurade-plancha-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Daurade dorée à la plancha, cuisine méditerranéenne" loading="lazy" width="1200" height="800">
+          </picture>
           <div class="feature-icon" aria-hidden="true">&#127860;</div>
           <h3>Cuisine terre &amp; mer</h3>
           <p>Poissons grillés, viandes sélectionnées, moules-frites, salades repas. Des produits frais et locaux, une carte méditerranéenne. <a href="carte.html">Découvrir la carte</a>.</p>
         </div>
         <div class="feature-card">
+          <picture class="feature-card-image">
+            <source type="image/webp" srcset="img/web/terrasse-parasols-800.webp 800w, img/web/terrasse-parasols-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+            <img src="img/web/terrasse-parasols-800.jpg" srcset="img/web/terrasse-parasols-800.jpg 800w, img/web/terrasse-parasols-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Terrasse de la Brasserie O'Soleil sur le port de Marseillan" loading="lazy" width="1200" height="800">
+          </picture>
           <div class="feature-icon" aria-hidden="true">&#9728;&#65039;</div>
           <h3>150 couverts face à l'étang</h3>
           <p>Grande terrasse sous pergola, face aux bateaux et à l'étang de Thau. Le déjeuner au soleil, le dîner les pieds au bord de l'eau.</p>
@@ -269,6 +290,99 @@
         <p>Si vous recherchez un restaurant à Marseillan avec terrasse, O&nbsp;Soleil est l'endroit idéal pour profiter du soleil du sud dans une ambiance conviviale. Installé sur le port, notre établissement offre une vue imprenable, parfaite pour un déjeuner ou un dîner en toute détente. Sur la terrasse, vous pourrez aussi déguster une coupe de glace, un café ou encore un cocktail maison.</p>
         <p>Notre restaurant à Marseillan est reconnu pour ses plats de fruits de mer, ses poissons frais et ses recettes méditerranéennes. Que vous soyez de passage ou habitué, vous trouverez une <a href="carte.html">carte variée</a> ainsi que des formules adaptées à tous les goûts, notamment notre <a href="carte.html#formule-midi">formule du midi</a> très appréciée.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ========== GALERIE ========== -->
+  <section class="section gallery-section" id="galerie">
+    <div class="container">
+      <h2 class="section-title reveal">L'instant O'Soleil</h2>
+      <p class="section-subtitle reveal">L'ambiance, les saveurs, l'équipe — un aperçu de votre prochaine pause sur le port.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <figure class="gallery-item gallery-item-tall">
+        <picture>
+          <source type="image/webp" srcset="img/web/moules-pesto-800.webp 800w, img/web/moules-pesto-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+          <img src="img/web/moules-pesto-800.jpg" srcset="img/web/moules-pesto-800.jpg 800w, img/web/moules-pesto-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Moules au pesto, spécialité de la Brasserie O'Soleil" loading="lazy" width="800" height="1200">
+        </picture>
+      </figure>
+      <figure class="gallery-item">
+        <picture>
+          <source type="image/webp" srcset="img/web/seiches-grillees-800.webp 800w, img/web/seiches-grillees-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+          <img src="img/web/seiches-grillees-800.jpg" srcset="img/web/seiches-grillees-800.jpg 800w, img/web/seiches-grillees-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Seiches grillées au persil, plat de la mer" loading="lazy" width="800" height="1200">
+        </picture>
+      </figure>
+      <figure class="gallery-item">
+        <picture>
+          <source type="image/webp" srcset="img/web/terrasse-soiree-800.webp 800w, img/web/terrasse-soiree-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+          <img src="img/web/terrasse-soiree-800.jpg" srcset="img/web/terrasse-soiree-800.jpg 800w, img/web/terrasse-soiree-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Terrasse de la Brasserie O'Soleil pleine de clients" loading="lazy" width="1200" height="800">
+        </picture>
+      </figure>
+      <figure class="gallery-item">
+        <picture>
+          <source type="image/webp" srcset="img/web/aperol-spritz-800.webp 800w, img/web/aperol-spritz-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+          <img src="img/web/aperol-spritz-800.jpg" srcset="img/web/aperol-spritz-800.jpg 800w, img/web/aperol-spritz-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Aperol Spritz servi au bar de la Brasserie O'Soleil" loading="lazy" width="800" height="1200">
+        </picture>
+      </figure>
+      <figure class="gallery-item gallery-item-tall">
+        <picture>
+          <source type="image/webp" srcset="img/web/baba-rhum-800.webp 800w, img/web/baba-rhum-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+          <img src="img/web/baba-rhum-800.jpg" srcset="img/web/baba-rhum-800.jpg 800w, img/web/baba-rhum-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Baba au rhum, dessert signature de la Brasserie O'Soleil" loading="lazy" width="800" height="1200">
+        </picture>
+      </figure>
+      <figure class="gallery-item">
+        <picture>
+          <source type="image/webp" srcset="img/web/service-vin-800.webp 800w, img/web/service-vin-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+          <img src="img/web/service-vin-800.jpg" srcset="img/web/service-vin-800.jpg 800w, img/web/service-vin-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Service du vin en terrasse par l'équipe O'Soleil" loading="lazy" width="800" height="1200">
+        </picture>
+      </figure>
+      <figure class="gallery-item">
+        <picture>
+          <source type="image/webp" srcset="img/web/facade-port-800.webp 800w, img/web/facade-port-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+          <img src="img/web/facade-port-800.jpg" srcset="img/web/facade-port-800.jpg 800w, img/web/facade-port-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Façade et terrasse de la Brasserie O'Soleil sur le port" loading="lazy" width="800" height="1200">
+        </picture>
+      </figure>
+      <figure class="gallery-item">
+        <picture>
+          <source type="image/webp" srcset="img/web/tiramisu-osoleil-800.webp 800w, img/web/tiramisu-osoleil-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+          <img src="img/web/tiramisu-osoleil-800.jpg" srcset="img/web/tiramisu-osoleil-800.jpg 800w, img/web/tiramisu-osoleil-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Tiramisu signature Brasserie O'Soleil" loading="lazy" width="800" height="1200">
+        </picture>
+      </figure>
+      <figure class="gallery-item gallery-item-tall">
+        <picture>
+          <source type="image/webp" srcset="img/web/salade-foie-gras-800.webp 800w, img/web/salade-foie-gras-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+          <img src="img/web/salade-foie-gras-800.jpg" srcset="img/web/salade-foie-gras-800.jpg 800w, img/web/salade-foie-gras-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Salade au foie gras et magret fumé, entrée généreuse" loading="lazy" width="800" height="1200">
+        </picture>
+      </figure>
+      <figure class="gallery-item">
+        <picture>
+          <source type="image/webp" srcset="img/web/ambiance-conviviale-800.webp 800w, img/web/ambiance-conviviale-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+          <img src="img/web/ambiance-conviviale-800.jpg" srcset="img/web/ambiance-conviviale-800.jpg 800w, img/web/ambiance-conviviale-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Ambiance conviviale en salle à la Brasserie O'Soleil" loading="lazy" width="800" height="1200">
+        </picture>
+      </figure>
+      <figure class="gallery-item">
+        <picture>
+          <source type="image/webp" srcset="img/web/cliente-carte-800.webp 800w, img/web/cliente-carte-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+          <img src="img/web/cliente-carte-800.jpg" srcset="img/web/cliente-carte-800.jpg 800w, img/web/cliente-carte-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Cliente consultant la carte sur la terrasse O'Soleil" loading="lazy" width="800" height="1200">
+        </picture>
+      </figure>
+      <figure class="gallery-item">
+        <picture>
+          <source type="image/webp" srcset="img/web/soupe-poisson-800.webp 800w, img/web/soupe-poisson-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 33vw">
+          <img src="img/web/soupe-poisson-800.jpg" srcset="img/web/soupe-poisson-800.jpg 800w, img/web/soupe-poisson-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 33vw" alt="Soupe de poissons servie avec rouille, croûtons et fromage" loading="lazy" width="800" height="1200">
+        </picture>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========== BANNIÈRE DRONE (vue aérienne du port) ========== -->
+  <section class="drone-banner reveal" aria-label="Vue aérienne du port de Marseillan">
+    <picture>
+      <source type="image/webp" srcset="img/web/drone-port-large-1280.webp 1280w, img/web/drone-port-large-1920.webp 1920w" sizes="100vw">
+      <img src="img/web/drone-port-large-1280.jpg" alt="Vue aérienne du port de Marseillan et de la Brasserie O'Soleil" loading="lazy" width="1920" height="1080">
+    </picture>
+    <div class="drone-banner-overlay">
+      <p class="drone-banner-text">Sur le port de Marseillan,<br><span>face à l'étang de Thau.</span></p>
     </div>
   </section>
 

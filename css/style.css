@@ -264,6 +264,15 @@ ul {
   inset: 0;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .hero-bg::after {
@@ -515,13 +524,35 @@ ul {
 
 .feature-card {
   background: var(--color-white);
-  padding: 48px 36px;
+  padding: 0 36px 48px;
   border-radius: var(--radius);
   text-align: center;
   border: 1px solid var(--color-border);
   transition: all var(--transition);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-card-image {
+  display: block;
+  margin: -1px -36px 28px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  position: relative;
+}
+
+.feature-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover .feature-card-image img {
+  transform: scale(1.06);
 }
 
 .feature-card::before {
@@ -646,9 +677,121 @@ ul {
   letter-spacing: 2px;
 }
 
+/* ============================================
+   GALERIE PHOTOS — mosaïque
+   ============================================ */
+.gallery-section {
+  padding-top: 80px;
+  padding-bottom: 100px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
+  gap: 12px;
+  margin-top: 56px;
+  padding: 0 24px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gallery-item {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  position: relative;
+  background: var(--color-sand);
+}
+
+.gallery-item-tall {
+  grid-row: span 2;
+}
+
+.gallery-item picture,
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.gallery-item img {
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
 .reviews-count {
   font-size: 0.95rem;
   color: var(--color-text-light);
+}
+
+/* ============================================
+   BANNIÈRE DRONE — vue aérienne du port
+   ============================================ */
+.drone-banner {
+  position: relative;
+  width: 100%;
+  height: clamp(320px, 55vh, 560px);
+  overflow: hidden;
+  margin: 0;
+}
+
+.drone-banner picture,
+.drone-banner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.drone-banner-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(30,21,15,0.15) 0%, rgba(30,21,15,0.55) 100%);
+  padding: 0 24px;
+}
+
+.drone-banner-text {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+  color: var(--color-white);
+  text-align: center;
+  line-height: 1.3;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+  margin: 0;
+  max-width: 800px;
+}
+
+.drone-banner-text span {
+  font-style: normal;
+  font-family: var(--font-heading);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .drone-banner img {
+    transform: scale(1.05);
+    transition: transform 8s ease-out;
+  }
+  .drone-banner.visible img {
+    transform: scale(1);
+  }
 }
 
 /* Carrousel avis — scroll + autoplay */
@@ -1614,17 +1757,46 @@ ul {
   }
 
   .feature-card {
-    padding: 28px 24px;
+    padding: 0 24px 28px;
     border-radius: 16px;
+  }
+
+  .feature-card-image {
+    margin: 0 -24px 22px;
+    aspect-ratio: 16 / 10;
+    border-radius: 16px 16px 0 0;
   }
 
   .feature-card:hover {
     transform: none;
   }
 
+  .feature-card:hover .feature-card-image img {
+    transform: none;
+  }
+
   .feature-icon {
-    font-size: 2.2rem;
-    margin-bottom: 14px;
+    font-size: 2rem;
+    margin-bottom: 12px;
+    margin-top: 4px;
+  }
+
+  /* ====== GALERIE ====== */
+  .gallery-section {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 160px;
+    gap: 8px;
+    padding: 0 16px;
+    margin-top: 36px;
+  }
+
+  .gallery-item:hover img {
+    transform: none;
   }
 
   .feature-card h3 {
