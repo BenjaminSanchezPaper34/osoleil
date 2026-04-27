@@ -154,11 +154,18 @@ ul {
 
 /* === État TOP (hero visible) : header par-dessus le hero, dégradé full-width === */
 .site-header.hero-logo-visible {
-  background: linear-gradient(180deg, rgba(20, 14, 9, 0.5) 0%, rgba(20, 14, 9, 0) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(20, 14, 9, 0.78) 0%,
+    rgba(20, 14, 9, 0.55) 35%,
+    rgba(20, 14, 9, 0.25) 70%,
+    rgba(20, 14, 9, 0) 100%
+  );
   border-bottom: none;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   box-shadow: none;
+  padding-bottom: 24px;
 }
 
 /* Hero remonte derrière le header pour le full-bleed */
