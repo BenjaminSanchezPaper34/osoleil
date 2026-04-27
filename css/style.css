@@ -2162,7 +2162,7 @@ body:has(.hero) .hero {
   /* ====== CARTE / MENU ====== */
 
   .menu-nav {
-    top: 56px;
+    top: 64px;
   }
 
   .menu-nav-inner {
@@ -2270,7 +2270,7 @@ body:has(.hero) .hero {
   }
 
   .menu-nav {
-    top: 50px;
+    top: 60px;
   }
 
   .menu-nav-inner {
