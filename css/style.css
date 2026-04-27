@@ -152,6 +152,15 @@ ul {
   box-shadow: 0 2px 24px rgba(43, 33, 24, 0.1);
 }
 
+/* Sur la carte, le header est suivi d'une barre catégories : pas d'ombre entre */
+body:has(.menu-nav) .site-header.scrolled {
+  box-shadow: none;
+}
+
+body:has(.menu-nav) .menu-nav {
+  box-shadow: 0 2px 24px rgba(43, 33, 24, 0.08);
+}
+
 /* === État TOP (hero visible) : header par-dessus le hero, dégradé full-width === */
 .site-header.hero-logo-visible {
   background: linear-gradient(
