@@ -33,6 +33,7 @@
   /* --- Header scroll effect --- */
   var header = document.querySelector('.site-header');
   if (header) {
+    var heroLogo = document.querySelector('.hero-logo');
     var onScroll = function () {
       if (window.scrollY > 40) {
         header.classList.add('scrolled');
@@ -42,6 +43,20 @@
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    /* Logo header masqué tant que le hero-logo est visible */
+    if (heroLogo && 'IntersectionObserver' in window) {
+      var heroObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            header.classList.add('hero-logo-visible');
+          } else {
+            header.classList.remove('hero-logo-visible');
+          }
+        });
+      }, { threshold: 0 });
+      heroObserver.observe(heroLogo);
+    }
   }
 
   /* --- Scroll reveal animations --- */
