@@ -6,7 +6,6 @@
   <meta name="robots" content="noindex, nofollow, noarchive">
   <title>Tentez votre chance — Brasserie O'Soleil</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://use.typekit.net/gve0ixw.css">
@@ -24,209 +23,119 @@
       --sand: #F5EDE3;
       --sand-light: #FAF6F1;
       --dark: #1E150F;
+      --navy: #0F1B2A;
       --text: #3D3229;
       --text-light: #7A6B5D;
       --white: #FFFFFF;
       --border: #E8DDD1;
-      --radius: 22px;
-      --shadow-card: 0 20px 60px rgba(43, 33, 24, 0.12), 0 4px 16px rgba(43, 33, 24, 0.06);
+      --shadow-card: 0 -16px 60px rgba(43, 33, 24, 0.18);
       --font-body: 'DM Sans', system-ui, sans-serif;
       --font-heading: 'rift-soft', 'Oswald', sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { -webkit-text-size-adjust: 100%; }
+    html, body { height: 100%; }
     body {
-      min-height: 100vh;
-      min-height: 100dvh;
       font-family: var(--font-body);
       color: var(--text);
-      background:
-        radial-gradient(ellipse at top, rgba(212, 145, 58, 0.18) 0%, transparent 60%),
-        radial-gradient(ellipse at bottom right, rgba(198, 93, 52, 0.15) 0%, transparent 60%),
-        linear-gradient(160deg, var(--sand-light) 0%, var(--sand) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 16px;
-      padding-top: max(24px, env(safe-area-inset-top));
-      padding-bottom: max(24px, env(safe-area-inset-bottom));
+      background: var(--navy);
       overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
     }
 
-    .game {
-      width: 100%;
-      max-width: 520px;
+    /* === LAYOUT GLOBAL : photo + roue + card en bas === */
+    .stage {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
       position: relative;
     }
 
-    .step {
-      display: none;
-      animation: stepIn 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    .stage-photo {
+      position: relative;
+      flex: 0 0 auto;
+      height: 22vh;
+      min-height: 140px;
+      max-height: 220px;
+      overflow: hidden;
     }
-    .step.active { display: block; }
-    @keyframes stepIn {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px 28px;
-      box-shadow: var(--shadow-card);
-      text-align: center;
-    }
-
-    .logo-mark {
-      width: 64px;
-      height: auto;
-      margin: 0 auto 16px;
+    .stage-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
-
-    h1, h2 {
-      font-family: var(--font-heading);
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      color: var(--dark);
-      line-height: 1.15;
+    .stage-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,27,42,0) 0%, rgba(15,27,42,0.5) 80%, var(--navy) 100%);
     }
-    h1 { font-size: clamp(1.8rem, 6vw, 2.4rem); margin-bottom: 12px; text-transform: uppercase; }
-    h2 { font-size: clamp(1.4rem, 5vw, 1.8rem); margin-bottom: 12px; }
-
-    p { font-size: 1rem; line-height: 1.55; color: var(--text-light); margin-bottom: 20px; }
-    p.lead { color: var(--text); }
-
-    .btn {
-      display: inline-flex;
+    .stage-logo {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 56px;
+      height: 56px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 14px 28px;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 600;
-      border: 1px solid transparent;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
-      text-decoration: none;
-      -webkit-tap-highlight-color: transparent;
-      letter-spacing: 0.01em;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      z-index: 5;
     }
-    .btn:active { transform: scale(0.97); }
+    .stage-logo img { width: 36px; height: 36px; }
 
-    .btn-primary {
-      background: var(--primary);
-      color: var(--white);
-      border-color: var(--primary);
-      box-shadow: 0 6px 20px rgba(198, 93, 52, 0.3);
-    }
-    .btn-primary:hover { background: var(--primary-dark); box-shadow: 0 8px 24px rgba(198, 93, 52, 0.4); }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--text);
-      border-color: var(--border);
-    }
-    .btn-ghost:hover { background: var(--sand-light); }
-
-    .btn-link {
-      background: none;
-      border: none;
-      color: var(--text-light);
-      font-size: 0.9rem;
-      cursor: pointer;
-      margin-top: 12px;
-      padding: 8px;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .btn-link:hover { color: var(--primary); }
-
-    /* === Étoiles === */
-    .stars {
+    /* Zone de la roue (toujours visible derrière le card) */
+    .stage-wheel {
+      position: relative;
+      flex: 1 1 auto;
       display: flex;
+      align-items: flex-start;
       justify-content: center;
-      gap: 4px;
-      margin: 8px 0 24px;
+      padding-top: 8px;
+      overflow: hidden;
+      background: var(--navy);
     }
-    .stars button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 2.4rem;
-      color: #D8C9B6;
-      padding: 4px;
-      transition: transform 0.12s ease, color 0.15s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .stars button:hover { transform: scale(1.12); }
-    .stars button.lit { color: var(--gold); text-shadow: 0 2px 12px rgba(232, 181, 71, 0.4); }
 
-    .field {
-      margin: 16px 0 24px;
-    }
-    .field input, .field textarea {
-      width: 100%;
-      padding: 14px 18px;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      color: var(--dark);
-      background: var(--sand-light);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      outline: none;
-      transition: border-color 0.2s ease, background 0.2s ease;
-    }
-    .field input:focus, .field textarea:focus {
-      border-color: var(--primary);
-      background: var(--white);
-    }
-    .field textarea { resize: vertical; min-height: 80px; font-family: var(--font-body); }
-
-    /* === Roue === */
     .wheel-wrap {
       position: relative;
       width: min(360px, 80vw);
       height: min(360px, 80vw);
-      margin: 8px auto 28px;
     }
     .wheel-svg {
       width: 100%;
       height: 100%;
       display: block;
       transition: transform 7.5s cubic-bezier(0.12, 0.78, 0.18, 1);
-      filter: drop-shadow(0 10px 30px rgba(43, 33, 24, 0.18));
+      filter: drop-shadow(0 12px 32px rgba(0,0,0,0.4));
       will-change: transform;
     }
     .wheel-svg.is-spinning {
       animation: wheelGlow 7.5s ease-out;
     }
     @keyframes wheelGlow {
-      0%   { filter: drop-shadow(0 10px 30px rgba(43, 33, 24, 0.18)); }
-      30%  { filter: drop-shadow(0 14px 40px rgba(198, 93, 52, 0.35)); }
-      100% { filter: drop-shadow(0 10px 30px rgba(43, 33, 24, 0.18)); }
+      0%   { filter: drop-shadow(0 12px 32px rgba(0,0,0,0.4)); }
+      30%  { filter: drop-shadow(0 14px 40px rgba(232, 181, 71, 0.5)); }
+      100% { filter: drop-shadow(0 12px 32px rgba(0,0,0,0.4)); }
     }
     .wheel-pointer {
       position: absolute;
-      top: -10px;
+      top: -8px;
       left: 50%;
       transform: translateX(-50%);
       width: 0;
       height: 0;
       border-left: 16px solid transparent;
       border-right: 16px solid transparent;
-      border-top: 26px solid var(--dark);
-      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.3));
-      z-index: 2;
-      transition: transform 0.15s ease;
+      border-top: 28px solid var(--white);
+      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.4));
+      z-index: 4;
     }
-    .wheel-pointer.tick {
-      animation: pointerTick 0.08s ease-out;
-    }
+    .wheel-pointer.tick { animation: pointerTick 0.08s ease-out; }
     @keyframes pointerTick {
       0%   { transform: translateX(-50%) rotate(0deg); }
       50%  { transform: translateX(-50%) rotate(-12deg); }
@@ -245,10 +154,9 @@
       align-items: center;
       justify-content: center;
       box-shadow:
-        0 6px 18px rgba(0,0,0,0.18),
+        0 6px 18px rgba(0,0,0,0.25),
         0 0 0 6px var(--sand-light),
-        0 0 0 8px var(--primary),
-        inset 0 0 0 1px rgba(255,255,255,0.8);
+        0 0 0 8px var(--primary);
       z-index: 3;
     }
     .wheel-hub img {
@@ -261,39 +169,275 @@
       50% { transform: scale(1.05); }
     }
 
-    /* === Reward === */
-    .reward-icon {
+    /* === CARD EN BAS === */
+    .stage-card {
+      flex: 0 0 auto;
+      background: var(--white);
+      border-radius: 28px 28px 0 0;
+      box-shadow: var(--shadow-card);
+      padding: 32px 24px;
+      padding-bottom: max(32px, env(safe-area-inset-bottom));
+      min-height: 50vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step {
+      display: none;
+      flex: 1 1 auto;
+      flex-direction: column;
+      animation: stepIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .step.active { display: flex; }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--dark);
+      text-align: center;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    /* === RÈGLES NUMÉROTÉES === */
+    .rules {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+    .rules-icon {
+      font-size: 3rem;
+      margin-bottom: 4px;
+      filter: drop-shadow(0 4px 8px rgba(212, 145, 58, 0.25));
+    }
+    .rule {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .rule-num {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-light);
+      width: 24px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .rule-text { flex: 1 1 auto; }
+    .rule strong { color: var(--dark); font-weight: 600; }
+
+    /* === ÉTOILES === */
+    .rating {
+      text-align: center;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+    .rating-label {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+    .stars button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 2.6rem;
+      color: #D8C9B6;
+      padding: 4px;
+      transition: transform 0.12s ease, color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .stars button:hover { transform: scale(1.12); }
+    .stars button.lit {
+      color: var(--gold);
+      text-shadow: 0 2px 12px rgba(232, 181, 71, 0.4);
+    }
+
+    /* === FORM === */
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 14px 18px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dark);
+      background: var(--sand-light);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      outline: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--primary);
+      background: var(--white);
+    }
+    .field textarea { resize: vertical; min-height: 80px; }
+
+    .checks {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 8px 0 16px;
+    }
+    .check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      line-height: 1.4;
+      cursor: pointer;
+    }
+    .check input { margin-top: 3px; flex-shrink: 0; }
+    .check a { color: var(--primary); text-decoration: underline; }
+
+    /* === BOUTONS === */
+    .step-cta {
+      margin-top: auto;
+      padding-top: 20px;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 8px;
+      padding: 16px 24px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.2s ease, opacity 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .btn:not(:disabled):active { transform: scale(0.98); }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+      box-shadow: 0 6px 18px rgba(198, 93, 52, 0.32);
+    }
+    .btn-primary:not(:disabled):hover {
+      background: var(--primary-dark);
+      box-shadow: 0 8px 22px rgba(198, 93, 52, 0.42);
+    }
+    .btn-link {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      text-transform: none;
+      letter-spacing: 0;
+      cursor: pointer;
+      padding: 12px;
+      margin-top: 8px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .btn-link:hover { color: var(--primary); }
+
+    /* === ÉCRAN GOOGLE === */
+    .google-wait {
+      text-align: center;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+    }
+    .google-wait p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* === RÉCOMPENSE === */
+    .reward {
+      text-align: center;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+    }
+    .reward-emoji {
       font-size: 4rem;
-      margin-bottom: 8px;
       animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     @keyframes pop {
       from { transform: scale(0.4); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
-    .prize {
+    .reward-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      background: rgba(232, 181, 71, 0.15);
+      color: #8B6914;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 50px;
+      margin: 4px auto 8px;
+    }
+    .reward-prize {
       font-family: var(--font-heading);
-      font-size: clamp(1.6rem, 6vw, 2rem);
+      font-size: clamp(1.7rem, 7vw, 2.2rem);
       font-weight: 600;
       color: var(--primary);
       text-transform: uppercase;
       letter-spacing: 0.02em;
-      margin: 12px 0 20px;
       line-height: 1.15;
+      margin-bottom: 12px;
     }
     .code-box {
       background: linear-gradient(135deg, var(--sand-light) 0%, var(--sand) 100%);
       border: 1px dashed var(--primary);
       border-radius: 14px;
-      padding: 16px 24px;
-      margin: 16px 0;
+      padding: 14px 22px;
+      margin: 8px auto;
       display: inline-block;
     }
     .code-label {
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       color: var(--text-light);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       margin-bottom: 4px;
     }
     .code-value {
@@ -304,26 +448,28 @@
       letter-spacing: 0.08em;
     }
     .footnote {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-light);
-      margin-top: 16px;
+      margin-top: 12px;
       line-height: 1.5;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
     }
-
-    /* Bloc CTA capture d'écran */
     .screenshot-cta {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin: 24px 0 8px;
-      padding: 14px 18px;
-      background: linear-gradient(135deg, rgba(232, 181, 71, 0.12) 0%, rgba(212, 145, 58, 0.08) 100%);
+      gap: 12px;
+      margin: 18px auto 0;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, rgba(232, 181, 71, 0.12), rgba(212, 145, 58, 0.08));
       border: 1px solid rgba(212, 145, 58, 0.25);
       border-radius: 14px;
       text-align: left;
+      max-width: 360px;
     }
     .screenshot-icon {
-      font-size: 1.7rem;
+      font-size: 1.5rem;
       flex-shrink: 0;
       animation: wiggle 2.5s ease-in-out infinite;
     }
@@ -333,30 +479,22 @@
       96% { transform: rotate(10deg); }
       98% { transform: rotate(-5deg); }
     }
-    .screenshot-text {
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
     .screenshot-text strong {
-      font-size: 0.92rem;
+      display: block;
+      font-size: 0.88rem;
       color: var(--dark);
       font-weight: 600;
     }
     .screenshot-text span {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       color: var(--text-light);
       line-height: 1.4;
     }
 
-    /* === Confetti === */
+    /* === CONFETTI === */
     .confetti {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       pointer-events: none;
       z-index: 100;
     }
@@ -364,184 +502,227 @@
       position: absolute;
       width: 10px;
       height: 10px;
-      background: var(--primary);
       border-radius: 2px;
       top: -20px;
       animation: fall 3s linear forwards;
     }
     @keyframes fall {
-      to {
-        transform: translateY(105vh) rotate(720deg);
-        opacity: 0;
+      to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* === LOADING === */
+    .spinner {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto;
+      border: 3px solid rgba(198, 93, 52, 0.15);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* === DESKTOP === */
+    @media (min-width: 720px) {
+      .stage-photo { height: 28vh; max-height: 280px; }
+      .stage-card {
+        max-width: 540px;
+        margin: 0 auto;
+        border-radius: 28px;
+        margin-top: -32px;
+        margin-bottom: 32px;
+        padding: 40px 36px;
+        min-height: auto;
       }
-    }
-
-    .step-back {
-      display: inline-block;
-      margin-top: 16px;
-      color: var(--text-light);
-      font-size: 0.85rem;
-      text-decoration: none;
-    }
-    .step-back:hover { color: var(--primary); }
-
-    .badge {
-      display: inline-block;
-      padding: 4px 12px;
-      background: rgba(232, 181, 71, 0.15);
-      color: #8B6914;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      border-radius: 50px;
-      margin-bottom: 16px;
-    }
-
-    .already {
-      text-align: center;
-      padding: 24px 0;
-    }
-    .already .icon {
-      font-size: 3rem;
-      margin-bottom: 12px;
     }
   </style>
 </head>
 <body>
-  <main class="game">
 
-    <!-- ÉTAPE 1 : ACCUEIL -->
-    <section class="step active" data-step="welcome">
-      <div class="card">
-        <img src="img/logo-osoleil.svg" alt="" class="logo-mark">
-        <span class="badge">🎁 Cadeau gourmand</span>
-        <h1>Merci de votre visite&nbsp;!</h1>
-        <p class="lead">Laissez-nous votre avis et tournez la roue pour gagner un cadeau gourmand à découvrir lors de votre prochaine visite.</p>
-        <button class="btn btn-primary" data-go="rating">Commencer</button>
+  <main class="stage" id="stage">
+
+    <!-- Photo de fond -->
+    <div class="stage-photo">
+      <img src="img/web/terrasse-soiree-1280.webp" alt="Terrasse de la Brasserie O'Soleil au coucher du soleil">
+    </div>
+    <div class="stage-logo">
+      <img src="img/logo-osoleil.svg" alt="">
+    </div>
+
+    <!-- Roue (visible derrière le card) -->
+    <div class="stage-wheel">
+      <div class="wheel-wrap">
+        <div class="wheel-pointer"></div>
+        <svg class="wheel-svg" id="wheel-svg" viewBox="-100 -100 200 200"></svg>
+        <div class="wheel-hub"><img src="img/logo-osoleil.svg" alt=""></div>
       </div>
-    </section>
+    </div>
 
-    <!-- ÉTAPE 2 : NOTE ET COMMENTAIRE -->
-    <section class="step" data-step="rating">
-      <div class="card">
-        <h2>Comment s'est passé votre repas ?</h2>
-        <p>Notez votre expérience à la Brasserie O'Soleil.</p>
+    <!-- Card en bas -->
+    <section class="stage-card">
 
-        <div class="stars" id="stars" role="radiogroup" aria-label="Note">
-          <button type="button" data-stars="1" aria-label="1 étoile">★</button>
-          <button type="button" data-stars="2" aria-label="2 étoiles">★</button>
-          <button type="button" data-stars="3" aria-label="3 étoiles">★</button>
-          <button type="button" data-stars="4" aria-label="4 étoiles">★</button>
-          <button type="button" data-stars="5" aria-label="5 étoiles">★</button>
-        </div>
-
-        <div class="field">
-          <input type="text" id="reviewer-name" placeholder="Votre prénom" autocomplete="given-name">
-        </div>
-        <div class="field">
-          <textarea id="reviewer-comment" placeholder="Quelques mots sur votre expérience (optionnel)"></textarea>
-        </div>
-
-        <button class="btn btn-primary" id="rating-continue" disabled>Continuer</button>
-      </div>
-    </section>
-
-    <!-- ÉTAPE 2bis : FEEDBACK PRIVÉ (note < 4) -->
-    <section class="step" data-step="feedback">
-      <div class="card">
-        <div class="reward-icon" style="font-size:3rem">🙏</div>
-        <h2>Merci pour votre retour</h2>
-        <p>Nous sommes désolés que votre expérience n'ait pas été à la hauteur. Émiléna et Julien souhaitent en savoir plus pour nous améliorer.</p>
-        <div class="field">
-          <textarea id="feedback-comment" placeholder="Que s'est-il passé ? Vos remarques nous sont précieuses." rows="5"></textarea>
-        </div>
-        <div class="field">
-          <input type="email" id="feedback-email" placeholder="Votre email (optionnel, pour vous recontacter)">
-        </div>
-        <button class="btn btn-primary" id="send-feedback">Envoyer notre équipe</button>
-        <p class="footnote">Votre message arrive directement à la direction. Aucun passage public.</p>
-      </div>
-    </section>
-
-    <!-- ÉTAPE 2ter : FEEDBACK ENVOYÉ -->
-    <section class="step" data-step="feedback-sent">
-      <div class="card">
-        <div class="reward-icon">💌</div>
-        <h2>Message reçu</h2>
-        <p>Merci de nous avoir fait part de votre ressenti. Nous reviendrons vers vous rapidement si vous nous avez laissé un email.</p>
-        <p class="footnote">À très bientôt sur le port de Marseillan.</p>
-      </div>
-    </section>
-
-    <!-- ÉTAPE 3 : INVITATION GOOGLE -->
-    <section class="step" data-step="google">
-      <div class="card">
-        <h2>Plus qu'une étape&nbsp;!</h2>
-        <p>Pour valider votre participation, partagez votre avis sur Google. Cela nous aide énormément 🙏</p>
-
-        <a href="https://www.google.com/maps/place/Brasserie+O%27Soleil/@43.3485,3.5377,17z"
-           target="_blank" rel="noopener noreferrer"
-           class="btn btn-primary" id="open-google">
-          ⭐ Publier sur Google
-        </a>
-
-        <div>
-          <button class="btn-link" data-go="wheel">J'ai laissé mon avis &rarr;</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ÉTAPE 4 : ROUE -->
-    <section class="step" data-step="wheel">
-      <div class="card">
-        <h2>Tournez la roue&nbsp;!</h2>
-        <p>Vous avez gagné le droit de tenter votre chance.</p>
-
-        <div class="wheel-wrap">
-          <div class="wheel-pointer"></div>
-          <svg class="wheel-svg" id="wheel-svg" viewBox="-100 -100 200 200"></svg>
-          <div class="wheel-hub"><img src="img/logo-osoleil.svg" alt=""></div>
-        </div>
-
-        <button class="btn btn-primary" id="spin-btn">Faire tourner</button>
-      </div>
-    </section>
-
-    <!-- ÉTAPE 5 : RÉCOMPENSE -->
-    <section class="step" data-step="reward">
-      <div class="card reward-card" id="reward-card">
-        <div class="reward-icon" id="reward-emoji">🎉</div>
-        <span class="badge">Vous avez gagné</span>
-        <div class="prize" id="prize-name"></div>
-        <div class="code-box">
-          <div class="code-label">Votre code</div>
-          <div class="code-value" id="prize-code"></div>
-        </div>
-        <p class="footnote">Présentez ce code à votre serveur pour profiter de votre cadeau. Valable jusqu'au <span id="prize-expiry"></span>.</p>
-
-        <div class="screenshot-cta">
-          <div class="screenshot-icon" aria-hidden="true">📸</div>
-          <div class="screenshot-text">
-            <strong>Sauvegardez votre code</strong>
-            <span>Faites une capture d'écran avant de quitter cette page.</span>
+      <!-- ÉTAPE 1 : Règles -->
+      <div class="step active" data-step="welcome">
+        <div class="step-title">Les règles du jeu</div>
+        <div class="rules">
+          <div class="rules-icon">🎁</div>
+          <div class="rule">
+            <span class="rule-num">1</span>
+            <span class="rule-text">Donnez-nous <strong>votre avis</strong></span>
+          </div>
+          <div class="rule">
+            <span class="rule-num">2</span>
+            <span class="rule-text">Publiez-le sur <strong>Google</strong></span>
+          </div>
+          <div class="rule">
+            <span class="rule-num">3</span>
+            <span class="rule-text">Tournez la roue et <strong>découvrez votre cadeau</strong></span>
           </div>
         </div>
-
-        <button class="btn btn-ghost" id="share-btn" hidden>↗︎ Partager</button>
+        <div class="step-cta">
+          <button class="btn btn-primary" data-go="rating">Suivant</button>
+        </div>
       </div>
-    </section>
 
-    <!-- ÉCRAN : DÉJÀ JOUÉ -->
-    <section class="step" data-step="already">
-      <div class="card already">
-        <div class="icon">🌅</div>
-        <h2>À la prochaine visite&nbsp;!</h2>
-        <p>Vous avez déjà tenté votre chance récemment. Revenez nous voir bientôt.</p>
-        <button class="btn btn-ghost" id="reset-game">Recommencer (test)</button>
+      <!-- ÉTAPE 2 : Note -->
+      <div class="step" data-step="rating">
+        <div class="step-title">Prêt(e) à participer ?</div>
+        <div class="rating">
+          <p class="rating-label">Donnez-nous votre avis</p>
+          <div class="stars" id="stars" role="radiogroup" aria-label="Note">
+            <button type="button" data-stars="1" aria-label="1 étoile">★</button>
+            <button type="button" data-stars="2" aria-label="2 étoiles">★</button>
+            <button type="button" data-stars="3" aria-label="3 étoiles">★</button>
+            <button type="button" data-stars="4" aria-label="4 étoiles">★</button>
+            <button type="button" data-stars="5" aria-label="5 étoiles">★</button>
+          </div>
+        </div>
+        <div class="step-cta">
+          <button class="btn btn-primary" id="rating-continue" disabled>Commencer</button>
+        </div>
       </div>
-    </section>
 
+      <!-- ÉTAPE 2bis : Feedback privé (note < 4) -->
+      <div class="step" data-step="feedback">
+        <div class="step-title">Merci pour votre retour</div>
+        <div style="text-align:center; margin-bottom:16px;">
+          <div class="rules-icon">🙏</div>
+          <p style="color:var(--text-light); font-size:0.95rem; line-height:1.55;">Nous sommes désolés que votre expérience n'ait pas été à la hauteur. Émiléna et Julien aimeraient en savoir plus.</p>
+        </div>
+        <div class="form-fields">
+          <div class="field"><textarea id="feedback-comment" placeholder="Votre message — qu'est-ce qui n'a pas été ?" rows="4"></textarea></div>
+          <div class="field"><input type="email" id="feedback-email" placeholder="Votre email (optionnel)"></div>
+        </div>
+        <div class="step-cta">
+          <button class="btn btn-primary" id="send-feedback">Envoyer notre équipe</button>
+          <p class="footnote" style="margin-top:12px;">Votre message arrive directement à la direction. Aucun passage public.</p>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 3 : Coordonnées -->
+      <div class="step" data-step="contact">
+        <div class="step-title">Vos coordonnées</div>
+        <p style="text-align:center; color:var(--text-light); font-size:0.9rem; margin-bottom:18px;">Pour recevoir votre cadeau (et seulement pour ça).</p>
+        <div class="form-fields">
+          <div class="field"><input type="text" id="reviewer-name" placeholder="Votre prénom" autocomplete="given-name"></div>
+          <div class="field"><input type="email" id="reviewer-email" placeholder="Votre email" autocomplete="email"></div>
+          <div class="field"><input type="text" id="reviewer-zip" placeholder="Code postal (optionnel)" inputmode="numeric" autocomplete="postal-code"></div>
+        </div>
+        <div class="checks">
+          <label class="check">
+            <input type="checkbox" id="check-rules">
+            <span>J'ai lu et j'accepte le <a href="#" onclick="alert('Règlement bientôt disponible'); return false;">règlement du jeu</a>.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" id="check-news">
+            <span>Je veux recevoir les actualités et offres de la Brasserie O'Soleil.</span>
+          </label>
+        </div>
+        <div class="step-cta">
+          <button class="btn btn-primary" id="contact-continue" disabled>Participer</button>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 4 : Google -->
+      <div class="step" data-step="google">
+        <div class="step-title">Plus qu'une étape !</div>
+        <div class="google-wait">
+          <div class="rules-icon" style="font-size:3rem;">⭐</div>
+          <p>Pour valider votre participation, partagez votre avis sur Google. C'est rapide et ça nous aide énormément 🙏</p>
+        </div>
+        <div class="step-cta">
+          <a href="https://www.google.com/maps/place//data=!4m3!3m2!1s0x12b1397d164d3ee7:0x26e98b750873d736!12e1?source=g.page.m._&laa=merchant-review-solicitation"
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn-primary" id="open-google">⭐ Publier sur Google</a>
+          <button class="btn-link" data-go="verify">J'ai laissé mon avis</button>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 4b : Vérification -->
+      <div class="step" data-step="verify">
+        <div class="step-title">Vérification en cours…</div>
+        <div class="google-wait">
+          <div class="spinner"></div>
+          <p>Patientez quelques secondes</p>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 5 : Roue (CTA pour spinner) -->
+      <div class="step" data-step="spin">
+        <div class="step-title">Tournez la roue !</div>
+        <p style="text-align:center; color:var(--text-light); font-size:0.95rem; margin-bottom:8px;">Bonne chance 🍀</p>
+        <div class="step-cta">
+          <button class="btn btn-primary" id="spin-btn">Faire tourner la roue</button>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 6 : Récompense -->
+      <div class="step" data-step="reward">
+        <div class="reward">
+          <div class="reward-emoji" id="reward-emoji">🎉</div>
+          <span class="reward-badge">Vous avez gagné</span>
+          <div class="reward-prize" id="prize-name"></div>
+          <div class="code-box">
+            <div class="code-label">Votre code</div>
+            <div class="code-value" id="prize-code"></div>
+          </div>
+          <p class="footnote">Présentez ce code à votre serveur. Valable jusqu'au <span id="prize-expiry"></span>.</p>
+          <div class="screenshot-cta">
+            <div class="screenshot-icon">📸</div>
+            <div class="screenshot-text">
+              <strong>Sauvegardez votre code</strong>
+              <span>Faites une capture d'écran avant de quitter cette page.</span>
+            </div>
+          </div>
+        </div>
+        <div class="step-cta">
+          <button class="btn btn-primary" id="share-btn" hidden>↗︎ Partager mon cadeau</button>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 6b : Feedback envoyé -->
+      <div class="step" data-step="feedback-sent">
+        <div class="reward">
+          <div class="reward-emoji">💌</div>
+          <div class="step-title" style="margin-top:8px;">Message reçu</div>
+          <p style="color:var(--text-light); font-size:0.95rem; line-height:1.55;">Merci de nous avoir fait part de votre ressenti. Nous reviendrons vers vous rapidement si vous nous avez laissé un email.</p>
+          <p class="footnote">À très bientôt sur le port de Marseillan.</p>
+        </div>
+      </div>
+
+      <!-- ÉTAPE : Déjà joué -->
+      <div class="step" data-step="already">
+        <div class="reward">
+          <div class="reward-emoji">🌅</div>
+          <div class="step-title" style="margin-top:8px;">À la prochaine visite !</div>
+          <p style="color:var(--text-light); font-size:0.95rem;">Vous avez déjà tenté votre chance récemment.</p>
+        </div>
+        <div class="step-cta">
+          <button class="btn btn-primary" id="reset-game" style="background:var(--text-light); box-shadow:none; text-transform:none; letter-spacing:0;">Recommencer (test)</button>
+        </div>
+      </div>
+
+    </section>
   </main>
 
   <div class="confetti" id="confetti" aria-hidden="true"></div>
@@ -550,24 +731,20 @@
     (function () {
       'use strict';
 
-      // === CONFIG : prix & couleurs ===
-      // `label` = nom complet (affiché sur la récompense finale)
-      // `short` = version courte affichée sur la roue (max ~10 char)
       const PRIZES = [
-        { label: 'Café offert',           short: 'CAFÉ',       emoji: '☕', color: '#A84A28', weight: 28 },
-        { label: '1 boule de glace',      short: 'GLACE',      emoji: '🍨', color: '#E8B547', weight: 22 },
-        { label: 'Apéritif maison',       short: 'APÉRITIF',   emoji: '🍹', color: '#C65D34', weight: 16 },
-        { label: 'Dessert offert',        short: 'DESSERT',    emoji: '🍰', color: '#D4913A', weight: 14 },
-        { label: 'Coupe de champagne',    short: 'CHAMPAGNE',  emoji: '🥂', color: '#E0B547', weight: 8  },
-        { label: '−10% sur la note',      short: '−10%',       emoji: '🎟️', color: '#7A6B5D', weight: 7  },
-        { label: 'Menu enfant offert',    short: 'MENU ENFANT',emoji: '🧒', color: '#3D9BC4', weight: 3  },
-        { label: 'Menu O’Soleil offert',  short: 'MENU OFFERT',emoji: '🌟', color: '#A84A28', weight: 2 }
+        { label: 'Café offert',           short: 'CAFÉ',        emoji: '☕', color: '#A84A28', weight: 28 },
+        { label: '1 boule de glace',      short: 'GLACE',       emoji: '🍨', color: '#E8B547', weight: 22 },
+        { label: 'Apéritif maison',       short: 'APÉRITIF',    emoji: '🍹', color: '#C65D34', weight: 16 },
+        { label: 'Dessert offert',        short: 'DESSERT',     emoji: '🍰', color: '#D4913A', weight: 14 },
+        { label: 'Coupe de champagne',    short: 'CHAMPAGNE',   emoji: '🥂', color: '#E0B547', weight: 8  },
+        { label: '−10% sur la note',      short: '−10%',        emoji: '🎟️', color: '#7A6B5D', weight: 7  },
+        { label: 'Menu enfant offert',    short: 'MENU ENFANT', emoji: '🧒', color: '#3D9BC4', weight: 3  },
+        { label: 'Menu O’Soleil offert',  short: 'MENU OFFERT', emoji: '🌟', color: '#A84A28', weight: 2 }
       ];
 
-      const STORAGE_KEY = 'osm_jeu_v1';
+      const STORAGE_KEY = 'osm_jeu_v2';
       const COOLDOWN_DAYS = 30;
 
-      // === HELPERS ===
       const $ = sel => document.querySelector(sel);
       const $$ = sel => Array.from(document.querySelectorAll(sel));
 
@@ -593,8 +770,7 @@
       function isOnCooldown() {
         const data = getStored();
         if (!data || !data.playedAt) return false;
-        const elapsed = Date.now() - data.playedAt;
-        return elapsed < COOLDOWN_DAYS * 24 * 60 * 60 * 1000;
+        return Date.now() - data.playedAt < COOLDOWN_DAYS * 24 * 60 * 60 * 1000;
       }
 
       // === ROUE ===
@@ -603,7 +779,6 @@
         const total = PRIZES.length;
         const arc = 360 / total;
         let html = '<defs>';
-        // Gradient subtil pour chaque segment (effet de matière)
         PRIZES.forEach((p, i) => {
           html += `<radialGradient id="g${i}" cx="50%" cy="50%" r="80%">
                      <stop offset="0%" stop-color="${p.color}" stop-opacity="1"/>
@@ -624,37 +799,29 @@
           html += `<path d="M0,0 L${x1},${y1} A100,100 0 ${largeArc} 1 ${x2},${y2} Z"
                        fill="url(#g${i})" stroke="rgba(255,255,255,0.55)" stroke-width="0.8"/>`;
 
-          // Emoji + texte du prix, alignés sur l'axe radial du segment
           const textAngle = startAngle + arc / 2;
           const rotate = textAngle + 90;
-
-          // Emoji bien gros au centre du segment
           const ex = Math.cos(textAngle * Math.PI / 180) * 50;
           const ey = Math.sin(textAngle * Math.PI / 180) * 50;
           html += `<g transform="translate(${ex},${ey}) rotate(${rotate})">
-                     <text text-anchor="middle" dominant-baseline="middle"
-                           font-size="18"
+                     <text text-anchor="middle" dominant-baseline="middle" font-size="18"
                            style="filter:drop-shadow(0 1.5px 3px rgba(0,0,0,0.4))">${p.emoji}</text>
                    </g>`;
 
-          // Texte court près du bord, gros et lisible
           const tx = Math.cos(textAngle * Math.PI / 180) * 80;
           const ty = Math.sin(textAngle * Math.PI / 180) * 80;
           html += `<g transform="translate(${tx},${ty}) rotate(${rotate})">
                      <text text-anchor="middle" dominant-baseline="middle"
                            fill="white" font-family="DM Sans, sans-serif"
-                           font-size="6.5" font-weight="700"
-                           letter-spacing="0.06em"
+                           font-size="6.5" font-weight="700" letter-spacing="0.06em"
                            style="text-shadow:0 1.5px 3px rgba(0,0,0,0.5)">${p.short}</text>
                    </g>`;
         });
-        // anneau extérieur
-        html += `<circle cx="0" cy="0" r="100" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1.5"/>`;
-        html += `<circle cx="0" cy="0" r="98" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>`;
+        html += `<circle cx="0" cy="0" r="100" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>`;
+        html += `<circle cx="0" cy="0" r="98" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>`;
         wheelSvg.innerHTML = html;
       }
 
-      // Pondération : choisir un prix selon les weights
       function pickPrize() {
         const total = PRIZES.reduce((s, p) => s + p.weight, 0);
         let r = Math.random() * total;
@@ -677,14 +844,8 @@
         const total = PRIZES.length;
         const arc = 360 / total;
         const idx = pickPrize();
-
-        // On vise le centre du segment + petit jitter aléatoire
-        // pour pas tomber pile au milieu à chaque fois
         const jitter = (Math.random() - 0.5) * (arc * 0.7);
         const targetMidAngle = idx * arc + arc / 2 + jitter;
-
-        // 9 tours minimum + un peu de hasard sur le nombre de tours
-        // pour que la durée et l'arrivée varient à chaque coup
         const turns = 9 + Math.floor(Math.random() * 3);
         const finalAngle = 360 * turns - targetMidAngle;
         const totalRotation = currentRotation + finalAngle - (currentRotation % 360);
@@ -693,7 +854,6 @@
         wheelSvg.classList.add('is-spinning');
         wheelSvg.style.transform = `rotate(${totalRotation}deg)`;
 
-        // Animation des "ticks" du pointeur — un coup à chaque segment qui passe
         animatePointerTicks(turns, 7500);
 
         setTimeout(() => {
@@ -702,22 +862,17 @@
         }, 7600);
       }
 
-      // Le pointeur "tape" à chaque segment qui passe sous lui (effet roue de la fortune)
       function animatePointerTicks(turns, durationMs) {
         const total = PRIZES.length;
         const totalTicks = turns * total;
         const pointer = $('.wheel-pointer');
-        // courbe ease-out : on tasse vers la fin pour suivre la décélération
         for (let i = 1; i <= totalTicks; i++) {
           const ratio = i / totalTicks;
-          // inverse de cubic-bezier ease-out approximé
           const t = 1 - Math.pow(1 - ratio, 3);
           const delay = t * durationMs;
-          // arrête de "tinter" trop près de la fin pour pas saturer l'oeil
           if (delay > durationMs - 80) continue;
           setTimeout(() => {
             pointer.classList.remove('tick');
-            // forçage reflow pour rejouer l'animation
             void pointer.offsetWidth;
             pointer.classList.add('tick');
           }, delay);
@@ -727,30 +882,29 @@
       function showReward(idx) {
         const prize = PRIZES[idx];
         const code = genCode();
-        const reviewer = ($('#reviewer-name').value || '').trim();
-        const stars = parseInt(localStorage.getItem('osm_temp_stars') || '0', 10);
+        const data = {
+          playedAt: Date.now(),
+          prize: prize.label,
+          code: code,
+          name: ($('#reviewer-name').value || '').trim(),
+          email: ($('#reviewer-email').value || '').trim(),
+          zip: ($('#reviewer-zip').value || '').trim(),
+          stars: selectedStars,
+          newsOptIn: $('#check-news').checked
+        };
 
         $('#reward-emoji').textContent = prize.emoji;
         $('#prize-name').textContent = prize.label;
         $('#prize-code').textContent = code;
 
-        // Date d'expiration : aujourd'hui + 90 jours
         const expiry = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000);
-        const opts = { day: 'numeric', month: 'long', year: 'numeric' };
-        $('#prize-expiry').textContent = expiry.toLocaleDateString('fr-FR', opts);
+        $('#prize-expiry').textContent = expiry.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
 
-        setStored({
-          playedAt: Date.now(),
-          prize: prize.label,
-          code: code,
-          reviewer: reviewer,
-          stars: stars
-        });
+        setStored(data);
 
         showStep('reward');
         confetti();
 
-        // Bouton partage natif si supporté (mobile)
         const shareBtn = $('#share-btn');
         if (navigator.share) {
           shareBtn.hidden = false;
@@ -763,7 +917,6 @@
         }
       }
 
-      // === CONFETTI ===
       function confetti() {
         const container = $('#confetti');
         container.innerHTML = '';
@@ -790,62 +943,75 @@
           b.classList.toggle('lit', parseInt(b.dataset.stars, 10) <= selectedStars);
         });
         $('#rating-continue').disabled = false;
-        localStorage.setItem('osm_temp_stars', selectedStars);
       });
 
-      // === ROUTAGE selon la note ===
-      // 4★ ou 5★ → Google + roue
-      // 1-3★ → feedback privé
       $('#rating-continue').addEventListener('click', () => {
-        if (selectedStars >= 4) {
-          showStep('google');
-        } else if (selectedStars > 0) {
-          showStep('feedback');
-        }
+        if (selectedStars >= 4) showStep('contact');
+        else if (selectedStars > 0) showStep('feedback');
       });
 
-      // === NAVIGATION ENTRE LES ÉTAPES (data-go) ===
+      // === FORM CONTACT ===
+      const checkRules = $('#check-rules');
+      const reviewerEmail = $('#reviewer-email');
+      const contactBtn = $('#contact-continue');
+      function validateContact() {
+        const emailOk = /\S+@\S+\.\S+/.test(reviewerEmail.value || '');
+        contactBtn.disabled = !(emailOk && checkRules.checked);
+      }
+      reviewerEmail.addEventListener('input', validateContact);
+      checkRules.addEventListener('change', validateContact);
+      contactBtn.addEventListener('click', () => showStep('google'));
+
+      // Quand on clique sur "Publier sur Google", on active le bouton "J'ai laissé mon avis"
+      // et on lance la simulation de vérif
+      $('#open-google').addEventListener('click', () => {
+        // mise en évidence de l'étape suivante
+        setTimeout(() => {
+          // pas de redirection auto, on laisse l'utilisateur revenir
+        }, 1000);
+      });
+
+      // Vérif simulée (3s) puis passage à l'étape spin
       document.addEventListener('click', e => {
         const go = e.target.closest('[data-go]');
-        if (go) {
-          e.preventDefault();
-          showStep(go.dataset.go);
+        if (!go) return;
+        e.preventDefault();
+        const target = go.dataset.go;
+        if (target === 'verify') {
+          showStep('verify');
+          setTimeout(() => showStep('spin'), 2800);
+        } else {
+          showStep(target);
         }
       });
 
       $('#spin-btn').addEventListener('click', spin);
 
-      // === ENVOI FEEDBACK PRIVÉ (mailto fallback, à remplacer par endpoint serveur plus tard) ===
+      // === FEEDBACK PRIVÉ ===
       $('#send-feedback').addEventListener('click', () => {
         const comment = ($('#feedback-comment').value || '').trim();
         const email = ($('#feedback-email').value || '').trim();
         const name = ($('#reviewer-name').value || '').trim();
-        const stars = selectedStars;
         if (!comment) {
           $('#feedback-comment').focus();
           return;
         }
-        const subject = encodeURIComponent(`Feedback client (${stars}★) — ${name || 'Anonyme'}`);
+        const subject = encodeURIComponent(`Feedback client (${selectedStars}★) — ${name || 'Anonyme'}`);
         const body = encodeURIComponent(
-          `Note : ${stars}★\nPrénom : ${name || '—'}\nEmail : ${email || '—'}\n\nMessage :\n${comment}`
+          `Note : ${selectedStars}★\nPrénom : ${name || '—'}\nEmail : ${email || '—'}\n\nMessage :\n${comment}`
         );
-        // Ouvre le mail vers o.soleil@yahoo.fr
         window.location.href = `mailto:o.soleil@yahoo.fr?subject=${subject}&body=${body}`;
-        // On affiche tout de suite l'écran de remerciement
         setTimeout(() => showStep('feedback-sent'), 200);
       });
 
       $('#reset-game').addEventListener('click', () => {
         localStorage.removeItem(STORAGE_KEY);
-        localStorage.removeItem('osm_temp_stars');
         location.reload();
       });
 
       // === INIT ===
       buildWheel();
-      if (isOnCooldown()) {
-        showStep('already');
-      }
+      if (isOnCooldown()) showStep('already');
 
     })();
   </script>
