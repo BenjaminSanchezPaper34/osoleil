@@ -373,7 +373,34 @@
           <textarea id="reviewer-comment" placeholder="Quelques mots sur votre expérience (optionnel)"></textarea>
         </div>
 
-        <button class="btn btn-primary" data-go="google" id="to-google" disabled>Continuer</button>
+        <button class="btn btn-primary" id="rating-continue" disabled>Continuer</button>
+      </div>
+    </section>
+
+    <!-- ÉTAPE 2bis : FEEDBACK PRIVÉ (note < 4) -->
+    <section class="step" data-step="feedback">
+      <div class="card">
+        <div class="reward-icon" style="font-size:3rem">🙏</div>
+        <h2>Merci pour votre retour</h2>
+        <p>Nous sommes désolés que votre expérience n'ait pas été à la hauteur. Émiléna et Julien souhaitent en savoir plus pour nous améliorer.</p>
+        <div class="field">
+          <textarea id="feedback-comment" placeholder="Que s'est-il passé ? Vos remarques nous sont précieuses." rows="5"></textarea>
+        </div>
+        <div class="field">
+          <input type="email" id="feedback-email" placeholder="Votre email (optionnel, pour vous recontacter)">
+        </div>
+        <button class="btn btn-primary" id="send-feedback">Envoyer notre équipe</button>
+        <p class="footnote">Votre message arrive directement à la direction. Aucun passage public.</p>
+      </div>
+    </section>
+
+    <!-- ÉTAPE 2ter : FEEDBACK ENVOYÉ -->
+    <section class="step" data-step="feedback-sent">
+      <div class="card">
+        <div class="reward-icon">💌</div>
+        <h2>Message reçu</h2>
+        <p>Merci de nous avoir fait part de votre ressenti. Nous reviendrons vers vous rapidement si vous nous avez laissé un email.</p>
+        <p class="footnote">À très bientôt sur le port de Marseillan.</p>
       </div>
     </section>
 
@@ -383,7 +410,7 @@
         <h2>Plus qu'une étape&nbsp;!</h2>
         <p>Pour valider votre participation, partagez votre avis sur Google. Cela nous aide énormément 🙏</p>
 
-        <a href="https://search.google.com/local/writereview?placeid=ChIJp75LjOkmsxIRJZmOzNwTb6c"
+        <a href="https://www.google.com/maps/place/Brasserie+O%27Soleil/@43.3485,3.5377,17z"
            target="_blank" rel="noopener noreferrer"
            class="btn btn-primary" id="open-google">
           ⭐ Publier sur Google
@@ -421,7 +448,7 @@
           <div class="code-label">Votre code</div>
           <div class="code-value" id="prize-code"></div>
         </div>
-        <p class="footnote">Présentez ce code à votre serveur pour profiter de votre cadeau lors de votre prochaine visite. Valable 3 mois.</p>
+        <p class="footnote">Présentez ce code à votre serveur pour profiter de votre cadeau. Valable jusqu'au <span id="prize-expiry"></span>.</p>
       </div>
     </section>
 
@@ -490,12 +517,29 @@
 
       // === ROUE ===
       const wheelSvg = $('#wheel-svg');
+      // Découpe un label en 2 lignes pour que ça tienne sur le segment
+      function splitLabel(label) {
+        if (label.length <= 14) return [label];
+        const words = label.split(' ');
+        const mid = Math.ceil(words.length / 2);
+        return [words.slice(0, mid).join(' '), words.slice(mid).join(' ')];
+      }
+
       function buildWheel() {
         const total = PRIZES.length;
         const arc = 360 / total;
-        let html = '';
+        let html = '<defs>';
+        // Gradient subtil pour chaque segment (effet de matière)
         PRIZES.forEach((p, i) => {
-          const startAngle = i * arc - 90; // start at top
+          html += `<radialGradient id="g${i}" cx="50%" cy="50%" r="80%">
+                     <stop offset="0%" stop-color="${p.color}" stop-opacity="1"/>
+                     <stop offset="100%" stop-color="${p.color}" stop-opacity="0.82"/>
+                   </radialGradient>`;
+        });
+        html += '</defs>';
+
+        PRIZES.forEach((p, i) => {
+          const startAngle = i * arc - 90;
           const endAngle = startAngle + arc;
           const x1 = Math.cos(startAngle * Math.PI / 180) * 100;
           const y1 = Math.sin(startAngle * Math.PI / 180) * 100;
@@ -504,22 +548,47 @@
           const largeArc = arc > 180 ? 1 : 0;
 
           html += `<path d="M0,0 L${x1},${y1} A100,100 0 ${largeArc} 1 ${x2},${y2} Z"
-                       fill="${p.color}" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>`;
+                       fill="url(#g${i})" stroke="rgba(255,255,255,0.55)" stroke-width="0.8"/>`;
 
-          // text label rotated to follow the segment
+          // Emoji + texte du prix, alignés sur l'axe radial du segment
           const textAngle = startAngle + arc / 2;
-          const tx = Math.cos(textAngle * Math.PI / 180) * 62;
-          const ty = Math.sin(textAngle * Math.PI / 180) * 62;
           const rotate = textAngle + 90;
-          html += `<g transform="translate(${tx},${ty}) rotate(${rotate})">
+          const lines = splitLabel(p.label);
+
+          // Emoji proche du centre
+          const ex = Math.cos(textAngle * Math.PI / 180) * 42;
+          const ey = Math.sin(textAngle * Math.PI / 180) * 42;
+          html += `<g transform="translate(${ex},${ey}) rotate(${rotate})">
                      <text text-anchor="middle" dominant-baseline="middle"
-                           fill="white" font-family="DM Sans, sans-serif"
-                           font-size="7" font-weight="600"
-                           style="text-shadow:0 1px 2px rgba(0,0,0,0.3)">${p.emoji}</text>
+                           font-size="13"
+                           style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3))">${p.emoji}</text>
                    </g>`;
+
+          // Texte du prix vers l'extérieur, sur 1 ou 2 lignes
+          const tx = Math.cos(textAngle * Math.PI / 180) * 72;
+          const ty = Math.sin(textAngle * Math.PI / 180) * 72;
+          html += `<g transform="translate(${tx},${ty}) rotate(${rotate})">`;
+          if (lines.length === 1) {
+            html += `<text text-anchor="middle" dominant-baseline="middle"
+                           fill="white" font-family="DM Sans, sans-serif"
+                           font-size="5.4" font-weight="600"
+                           letter-spacing="0.04em"
+                           style="text-shadow:0 1px 2px rgba(0,0,0,0.4)">${lines[0]}</text>`;
+          } else {
+            html += `<text text-anchor="middle" dominant-baseline="middle"
+                           fill="white" font-family="DM Sans, sans-serif"
+                           font-size="5.4" font-weight="600"
+                           letter-spacing="0.04em"
+                           style="text-shadow:0 1px 2px rgba(0,0,0,0.4)">
+                       <tspan x="0" dy="-3">${lines[0]}</tspan>
+                       <tspan x="0" dy="6.2">${lines[1]}</tspan>
+                     </text>`;
+          }
+          html += `</g>`;
         });
-        // outer ring
-        html += `<circle cx="0" cy="0" r="100" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="2"/>`;
+        // anneau extérieur
+        html += `<circle cx="0" cy="0" r="100" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1.5"/>`;
+        html += `<circle cx="0" cy="0" r="98" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>`;
         wheelSvg.innerHTML = html;
       }
 
@@ -566,6 +635,11 @@
         $('#prize-name').textContent = prize.label;
         $('#prize-code').textContent = code;
 
+        // Date d'expiration : aujourd'hui + 90 jours
+        const expiry = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000);
+        const opts = { day: 'numeric', month: 'long', year: 'numeric' };
+        $('#prize-expiry').textContent = expiry.toLocaleDateString('fr-FR', opts);
+
         setStored({
           playedAt: Date.now(),
           prize: prize.label,
@@ -604,11 +678,22 @@
         $$('#stars button').forEach(b => {
           b.classList.toggle('lit', parseInt(b.dataset.stars, 10) <= selectedStars);
         });
-        $('#to-google').disabled = false;
+        $('#rating-continue').disabled = false;
         localStorage.setItem('osm_temp_stars', selectedStars);
       });
 
-      // === NAVIGATION ENTRE LES ÉTAPES ===
+      // === ROUTAGE selon la note ===
+      // 4★ ou 5★ → Google + roue
+      // 1-3★ → feedback privé
+      $('#rating-continue').addEventListener('click', () => {
+        if (selectedStars >= 4) {
+          showStep('google');
+        } else if (selectedStars > 0) {
+          showStep('feedback');
+        }
+      });
+
+      // === NAVIGATION ENTRE LES ÉTAPES (data-go) ===
       document.addEventListener('click', e => {
         const go = e.target.closest('[data-go]');
         if (go) {
@@ -618,6 +703,26 @@
       });
 
       $('#spin-btn').addEventListener('click', spin);
+
+      // === ENVOI FEEDBACK PRIVÉ (mailto fallback, à remplacer par endpoint serveur plus tard) ===
+      $('#send-feedback').addEventListener('click', () => {
+        const comment = ($('#feedback-comment').value || '').trim();
+        const email = ($('#feedback-email').value || '').trim();
+        const name = ($('#reviewer-name').value || '').trim();
+        const stars = selectedStars;
+        if (!comment) {
+          $('#feedback-comment').focus();
+          return;
+        }
+        const subject = encodeURIComponent(`Feedback client (${stars}★) — ${name || 'Anonyme'}`);
+        const body = encodeURIComponent(
+          `Note : ${stars}★\nPrénom : ${name || '—'}\nEmail : ${email || '—'}\n\nMessage :\n${comment}`
+        );
+        // Ouvre le mail vers o.soleil@yahoo.fr
+        window.location.href = `mailto:o.soleil@yahoo.fr?subject=${subject}&body=${body}`;
+        // On affiche tout de suite l'écran de remerciement
+        setTimeout(() => showStep('feedback-sent'), 200);
+      });
 
       $('#reset-game').addEventListener('click', () => {
         localStorage.removeItem(STORAGE_KEY);
