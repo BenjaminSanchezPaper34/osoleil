@@ -145,11 +145,53 @@ ul {
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid rgba(232, 221, 209, 0.5);
-  transition: box-shadow var(--transition);
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .site-header.scrolled {
   box-shadow: 0 2px 24px rgba(43, 33, 24, 0.1);
+}
+
+/* === État TOP (hero visible) : header transparent, onglets centrés en pill foncée === */
+.site-header.hero-logo-visible {
+  background: transparent;
+  border-bottom-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.site-header.hero-logo-visible .main-nav {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.site-header.hero-logo-visible .main-nav ul {
+  background: rgba(20, 14, 9, 0.4);
+  -webkit-backdrop-filter: saturate(160%) blur(16px);
+  backdrop-filter: saturate(160%) blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50px;
+  padding: 5px;
+  gap: 2px;
+}
+
+.site-header.hero-logo-visible .main-nav a:not(.btn) {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.site-header.hero-logo-visible .main-nav a:not(.btn):hover,
+.site-header.hero-logo-visible .main-nav a:not(.btn).active {
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.site-header.hero-logo-visible .main-nav a.btn-primary {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .header-inner {
@@ -832,7 +874,7 @@ ul {
   font-size: 0.7em;
   display: inline-block;
   margin-top: 8px;
-  color: var(--color-accent);
+  color: var(--color-white);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1024,7 +1066,7 @@ ul {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('../img/corde.jpg') center/cover no-repeat;
+  background: url('../img/corde.webp') center/cover no-repeat;
   opacity: 0.85;
   pointer-events: none;
   z-index: 0;
