@@ -2201,14 +2201,21 @@ body:has(.hero) .hero {
   }
 
   .menu-item {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: 5px;
+    gap: 16px;
     padding: 16px 0;
     margin: 0;
     border-bottom: 1px solid rgba(232, 221, 209, 0.5);
     border-radius: 0;
     transition: background 0.15s ease;
+  }
+
+  .menu-item > div:first-child {
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .menu-item:active {
@@ -2231,14 +2238,18 @@ body:has(.hero) .hero {
     font-size: 0.9rem;
     line-height: 1.55;
     opacity: 0.6;
+    margin-top: 4px;
   }
 
   .menu-item-price {
+    flex-shrink: 0;
     margin-left: 0;
+    margin-top: 0;
     font-size: 1.05rem;
     font-weight: 600;
     color: var(--color-primary);
-    margin-top: 4px;
+    white-space: nowrap;
+    padding-top: 2px;
   }
 
   .menu-note {
