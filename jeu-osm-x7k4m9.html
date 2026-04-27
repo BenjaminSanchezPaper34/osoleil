@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Tentez votre chance — Brasserie O'Soleil</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://use.typekit.net/gve0ixw.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/svg+xml" href="img/logo-osoleil.svg">
+
+  <style>
+    :root {
+      --primary: #C65D34;
+      --primary-dark: #A84A28;
+      --primary-light: #E07B4C;
+      --accent: #D4913A;
+      --gold: #E8B547;
+      --sand: #F5EDE3;
+      --sand-light: #FAF6F1;
+      --dark: #1E150F;
+      --text: #3D3229;
+      --text-light: #7A6B5D;
+      --white: #FFFFFF;
+      --border: #E8DDD1;
+      --radius: 22px;
+      --shadow-card: 0 20px 60px rgba(43, 33, 24, 0.12), 0 4px 16px rgba(43, 33, 24, 0.06);
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --font-heading: 'rift-soft', 'Oswald', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: var(--font-body);
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at top, rgba(212, 145, 58, 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at bottom right, rgba(198, 93, 52, 0.15) 0%, transparent 60%),
+        linear-gradient(160deg, var(--sand-light) 0%, var(--sand) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      padding-top: max(24px, env(safe-area-inset-top));
+      padding-bottom: max(24px, env(safe-area-inset-bottom));
+      overflow-x: hidden;
+    }
+
+    .game {
+      width: 100%;
+      max-width: 520px;
+      position: relative;
+    }
+
+    .step {
+      display: none;
+      animation: stepIn 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .step.active { display: block; }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      box-shadow: var(--shadow-card);
+      text-align: center;
+    }
+
+    .logo-mark {
+      width: 64px;
+      height: auto;
+      margin: 0 auto 16px;
+      display: block;
+    }
+
+    h1, h2 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--dark);
+      line-height: 1.15;
+    }
+    h1 { font-size: clamp(1.8rem, 6vw, 2.4rem); margin-bottom: 12px; text-transform: uppercase; }
+    h2 { font-size: clamp(1.4rem, 5vw, 1.8rem); margin-bottom: 12px; }
+
+    p { font-size: 1rem; line-height: 1.55; color: var(--text-light); margin-bottom: 20px; }
+    p.lead { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      letter-spacing: 0.01em;
+    }
+    .btn:active { transform: scale(0.97); }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+      box-shadow: 0 6px 20px rgba(198, 93, 52, 0.3);
+    }
+    .btn-primary:hover { background: var(--primary-dark); box-shadow: 0 8px 24px rgba(198, 93, 52, 0.4); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { background: var(--sand-light); }
+
+    .btn-link {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: 12px;
+      padding: 8px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .btn-link:hover { color: var(--primary); }
+
+    /* === Étoiles === */
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin: 8px 0 24px;
+    }
+    .stars button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 2.4rem;
+      color: #D8C9B6;
+      padding: 4px;
+      transition: transform 0.12s ease, color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .stars button:hover { transform: scale(1.12); }
+    .stars button.lit { color: var(--gold); text-shadow: 0 2px 12px rgba(232, 181, 71, 0.4); }
+
+    .field {
+      margin: 16px 0 24px;
+    }
+    .field input, .field textarea {
+      width: 100%;
+      padding: 14px 18px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dark);
+      background: var(--sand-light);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      outline: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .field input:focus, .field textarea:focus {
+      border-color: var(--primary);
+      background: var(--white);
+    }
+    .field textarea { resize: vertical; min-height: 80px; font-family: var(--font-body); }
+
+    /* === Roue === */
+    .wheel-wrap {
+      position: relative;
+      width: min(360px, 80vw);
+      height: min(360px, 80vw);
+      margin: 8px auto 28px;
+    }
+    .wheel-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transition: transform 5s cubic-bezier(0.17, 0.67, 0.21, 1.02);
+      filter: drop-shadow(0 10px 30px rgba(43, 33, 24, 0.18));
+    }
+    .wheel-pointer {
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-top: 22px solid var(--dark);
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+      z-index: 2;
+    }
+    .wheel-hub {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15), inset 0 0 0 4px var(--sand);
+      z-index: 1;
+    }
+    .wheel-hub img { width: 40px; height: 40px; }
+
+    /* === Reward === */
+    .reward-icon {
+      font-size: 4rem;
+      margin-bottom: 8px;
+      animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes pop {
+      from { transform: scale(0.4); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .prize {
+      font-family: var(--font-heading);
+      font-size: clamp(1.6rem, 6vw, 2rem);
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin: 12px 0 20px;
+      line-height: 1.15;
+    }
+    .code-box {
+      background: linear-gradient(135deg, var(--sand-light) 0%, var(--sand) 100%);
+      border: 1px dashed var(--primary);
+      border-radius: 14px;
+      padding: 16px 24px;
+      margin: 16px 0;
+      display: inline-block;
+    }
+    .code-label {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+    .code-value {
+      font-family: 'SF Mono', 'Menlo', monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: 0.08em;
+    }
+    .footnote {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+
+    /* === Confetti === */
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 100;
+    }
+    .confetti span {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--primary);
+      border-radius: 2px;
+      top: -20px;
+      animation: fall 3s linear forwards;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(105vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    .step-back {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+    .step-back:hover { color: var(--primary); }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(232, 181, 71, 0.15);
+      color: #8B6914;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+
+    .already {
+      text-align: center;
+      padding: 24px 0;
+    }
+    .already .icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="game">
+
+    <!-- ÉTAPE 1 : ACCUEIL -->
+    <section class="step active" data-step="welcome">
+      <div class="card">
+        <img src="img/logo-osoleil.svg" alt="" class="logo-mark">
+        <span class="badge">🎁 Cadeau gourmand</span>
+        <h1>Merci de votre visite&nbsp;!</h1>
+        <p class="lead">Laissez-nous votre avis et tournez la roue pour gagner un cadeau gourmand à découvrir lors de votre prochaine visite.</p>
+        <button class="btn btn-primary" data-go="rating">Commencer</button>
+      </div>
+    </section>
+
+    <!-- ÉTAPE 2 : NOTE ET COMMENTAIRE -->
+    <section class="step" data-step="rating">
+      <div class="card">
+        <h2>Comment s'est passé votre repas ?</h2>
+        <p>Notez votre expérience à la Brasserie O'Soleil.</p>
+
+        <div class="stars" id="stars" role="radiogroup" aria-label="Note">
+          <button type="button" data-stars="1" aria-label="1 étoile">★</button>
+          <button type="button" data-stars="2" aria-label="2 étoiles">★</button>
+          <button type="button" data-stars="3" aria-label="3 étoiles">★</button>
+          <button type="button" data-stars="4" aria-label="4 étoiles">★</button>
+          <button type="button" data-stars="5" aria-label="5 étoiles">★</button>
+        </div>
+
+        <div class="field">
+          <input type="text" id="reviewer-name" placeholder="Votre prénom" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <textarea id="reviewer-comment" placeholder="Quelques mots sur votre expérience (optionnel)"></textarea>
+        </div>
+
+        <button class="btn btn-primary" data-go="google" id="to-google" disabled>Continuer</button>
+      </div>
+    </section>
+
+    <!-- ÉTAPE 3 : INVITATION GOOGLE -->
+    <section class="step" data-step="google">
+      <div class="card">
+        <h2>Plus qu'une étape&nbsp;!</h2>
+        <p>Pour valider votre participation, partagez votre avis sur Google. Cela nous aide énormément 🙏</p>
+
+        <a href="https://search.google.com/local/writereview?placeid=ChIJp75LjOkmsxIRJZmOzNwTb6c"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn-primary" id="open-google">
+          ⭐ Publier sur Google
+        </a>
+
+        <div>
+          <button class="btn-link" data-go="wheel">J'ai laissé mon avis &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ÉTAPE 4 : ROUE -->
+    <section class="step" data-step="wheel">
+      <div class="card">
+        <h2>Tournez la roue&nbsp;!</h2>
+        <p>Vous avez gagné le droit de tenter votre chance.</p>
+
+        <div class="wheel-wrap">
+          <div class="wheel-pointer"></div>
+          <svg class="wheel-svg" id="wheel-svg" viewBox="-100 -100 200 200"></svg>
+          <div class="wheel-hub"><img src="img/logo-osoleil.svg" alt=""></div>
+        </div>
+
+        <button class="btn btn-primary" id="spin-btn">Faire tourner</button>
+      </div>
+    </section>
+
+    <!-- ÉTAPE 5 : RÉCOMPENSE -->
+    <section class="step" data-step="reward">
+      <div class="card">
+        <div class="reward-icon" id="reward-emoji">🎉</div>
+        <span class="badge">Vous avez gagné</span>
+        <div class="prize" id="prize-name"></div>
+        <div class="code-box">
+          <div class="code-label">Votre code</div>
+          <div class="code-value" id="prize-code"></div>
+        </div>
+        <p class="footnote">Présentez ce code à votre serveur pour profiter de votre cadeau lors de votre prochaine visite. Valable 3 mois.</p>
+      </div>
+    </section>
+
+    <!-- ÉCRAN : DÉJÀ JOUÉ -->
+    <section class="step" data-step="already">
+      <div class="card already">
+        <div class="icon">🌅</div>
+        <h2>À la prochaine visite&nbsp;!</h2>
+        <p>Vous avez déjà tenté votre chance récemment. Revenez nous voir bientôt.</p>
+        <button class="btn btn-ghost" id="reset-game">Recommencer (test)</button>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // === CONFIG : prix & couleurs ===
+      const PRIZES = [
+        { label: 'Café offert',          emoji: '☕', color: '#A84A28', weight: 28 },
+        { label: '1 boule de glace',     emoji: '🍨', color: '#E8B547', weight: 22 },
+        { label: 'Apéritif maison',      emoji: '🍹', color: '#C65D34', weight: 16 },
+        { label: 'Dessert offert',       emoji: '🍰', color: '#D4913A', weight: 14 },
+        { label: 'Coupe de champagne',   emoji: '🥂', color: '#E0B547', weight: 8  },
+        { label: '−10% sur la note',     emoji: '🎟️', color: '#7A6B5D', weight: 7  },
+        { label: 'Menu enfant offert',   emoji: '🧒', color: '#3D9BC4', weight: 3  },
+        { label: 'Menu O’Soleil offert', emoji: '🌟', color: '#A84A28', weight: 2 }
+      ];
+
+      const STORAGE_KEY = 'osm_jeu_v1';
+      const COOLDOWN_DAYS = 30;
+
+      // === HELPERS ===
+      const $ = sel => document.querySelector(sel);
+      const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+      function showStep(name) {
+        $$('.step').forEach(s => s.classList.toggle('active', s.dataset.step === name));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function genCode() {
+        const ts = Date.now().toString(36).toUpperCase().slice(-4);
+        const rnd = Math.random().toString(36).toUpperCase().slice(2, 6);
+        return 'OS-' + rnd + '-' + ts;
+      }
+
+      function getStored() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch (e) { return null; }
+      }
+
+      function setStored(data) {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+      }
+
+      function isOnCooldown() {
+        const data = getStored();
+        if (!data || !data.playedAt) return false;
+        const elapsed = Date.now() - data.playedAt;
+        return elapsed < COOLDOWN_DAYS * 24 * 60 * 60 * 1000;
+      }
+
+      // === ROUE ===
+      const wheelSvg = $('#wheel-svg');
+      function buildWheel() {
+        const total = PRIZES.length;
+        const arc = 360 / total;
+        let html = '';
+        PRIZES.forEach((p, i) => {
+          const startAngle = i * arc - 90; // start at top
+          const endAngle = startAngle + arc;
+          const x1 = Math.cos(startAngle * Math.PI / 180) * 100;
+          const y1 = Math.sin(startAngle * Math.PI / 180) * 100;
+          const x2 = Math.cos(endAngle * Math.PI / 180) * 100;
+          const y2 = Math.sin(endAngle * Math.PI / 180) * 100;
+          const largeArc = arc > 180 ? 1 : 0;
+
+          html += `<path d="M0,0 L${x1},${y1} A100,100 0 ${largeArc} 1 ${x2},${y2} Z"
+                       fill="${p.color}" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>`;
+
+          // text label rotated to follow the segment
+          const textAngle = startAngle + arc / 2;
+          const tx = Math.cos(textAngle * Math.PI / 180) * 62;
+          const ty = Math.sin(textAngle * Math.PI / 180) * 62;
+          const rotate = textAngle + 90;
+          html += `<g transform="translate(${tx},${ty}) rotate(${rotate})">
+                     <text text-anchor="middle" dominant-baseline="middle"
+                           fill="white" font-family="DM Sans, sans-serif"
+                           font-size="7" font-weight="600"
+                           style="text-shadow:0 1px 2px rgba(0,0,0,0.3)">${p.emoji}</text>
+                   </g>`;
+        });
+        // outer ring
+        html += `<circle cx="0" cy="0" r="100" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="2"/>`;
+        wheelSvg.innerHTML = html;
+      }
+
+      // Pondération : choisir un prix selon les weights
+      function pickPrize() {
+        const total = PRIZES.reduce((s, p) => s + p.weight, 0);
+        let r = Math.random() * total;
+        for (let i = 0; i < PRIZES.length; i++) {
+          r -= PRIZES[i].weight;
+          if (r <= 0) return i;
+        }
+        return PRIZES.length - 1;
+      }
+
+      let currentRotation = 0;
+      let isSpinning = false;
+
+      function spin() {
+        if (isSpinning) return;
+        isSpinning = true;
+        $('#spin-btn').disabled = true;
+        $('#spin-btn').textContent = 'Bonne chance...';
+
+        const total = PRIZES.length;
+        const arc = 360 / total;
+        const idx = pickPrize();
+        const targetMidAngle = idx * arc + arc / 2;       // angle au centre du segment (depuis le haut)
+        const finalAngle = 360 * 6 - targetMidAngle;       // 6 tours, on aligne le segment sous le pointeur
+        const totalRotation = currentRotation + finalAngle - (currentRotation % 360);
+        currentRotation = totalRotation;
+
+        wheelSvg.style.transform = `rotate(${totalRotation}deg)`;
+
+        setTimeout(() => { showReward(idx); }, 5100);
+      }
+
+      function showReward(idx) {
+        const prize = PRIZES[idx];
+        const code = genCode();
+        const reviewer = ($('#reviewer-name').value || '').trim();
+        const stars = parseInt(localStorage.getItem('osm_temp_stars') || '0', 10);
+
+        $('#reward-emoji').textContent = prize.emoji;
+        $('#prize-name').textContent = prize.label;
+        $('#prize-code').textContent = code;
+
+        setStored({
+          playedAt: Date.now(),
+          prize: prize.label,
+          code: code,
+          reviewer: reviewer,
+          stars: stars
+        });
+
+        showStep('reward');
+        confetti();
+      }
+
+      // === CONFETTI ===
+      function confetti() {
+        const container = $('#confetti');
+        container.innerHTML = '';
+        const colors = ['#C65D34', '#E8B547', '#D4913A', '#A84A28', '#3D9BC4', '#FFFFFF'];
+        for (let i = 0; i < 60; i++) {
+          const piece = document.createElement('span');
+          piece.style.left = Math.random() * 100 + '%';
+          piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+          piece.style.animationDelay = (Math.random() * 1.2) + 's';
+          piece.style.animationDuration = (2.4 + Math.random() * 1.4) + 's';
+          piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+          container.appendChild(piece);
+        }
+        setTimeout(() => { container.innerHTML = ''; }, 4500);
+      }
+
+      // === ÉTOILES ===
+      const starsEl = $('#stars');
+      let selectedStars = 0;
+      starsEl.addEventListener('click', e => {
+        if (e.target.tagName !== 'BUTTON') return;
+        selectedStars = parseInt(e.target.dataset.stars, 10);
+        $$('#stars button').forEach(b => {
+          b.classList.toggle('lit', parseInt(b.dataset.stars, 10) <= selectedStars);
+        });
+        $('#to-google').disabled = false;
+        localStorage.setItem('osm_temp_stars', selectedStars);
+      });
+
+      // === NAVIGATION ENTRE LES ÉTAPES ===
+      document.addEventListener('click', e => {
+        const go = e.target.closest('[data-go]');
+        if (go) {
+          e.preventDefault();
+          showStep(go.dataset.go);
+        }
+      });
+
+      $('#spin-btn').addEventListener('click', spin);
+
+      $('#reset-game').addEventListener('click', () => {
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem('osm_temp_stars');
+        location.reload();
+      });
+
+      // === INIT ===
+      buildWheel();
+      if (isOnCooldown()) {
+        showStep('already');
+      }
+
+    })();
+  </script>
+</body>
+</html>
