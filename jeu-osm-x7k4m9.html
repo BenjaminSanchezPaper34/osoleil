@@ -106,21 +106,32 @@
       width: min(360px, 80vw);
       height: min(360px, 80vw);
     }
+    /* Ombre circulaire derrière la roue (évite le carré du SVG) */
+    .wheel-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+      z-index: 0;
+      transition: box-shadow 0.4s ease;
+    }
+    .wheel-wrap.is-spinning::before {
+      animation: wheelGlow 7.5s ease-out;
+    }
+    @keyframes wheelGlow {
+      0%   { box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35); }
+      30%  { box-shadow: 0 14px 50px rgba(232, 181, 71, 0.6); }
+      100% { box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35); }
+    }
     .wheel-svg {
+      position: relative;
       width: 100%;
       height: 100%;
       display: block;
       transition: transform 7.5s cubic-bezier(0.12, 0.78, 0.18, 1);
-      filter: drop-shadow(0 12px 32px rgba(0,0,0,0.4));
       will-change: transform;
-    }
-    .wheel-svg.is-spinning {
-      animation: wheelGlow 7.5s ease-out;
-    }
-    @keyframes wheelGlow {
-      0%   { filter: drop-shadow(0 12px 32px rgba(0,0,0,0.4)); }
-      30%  { filter: drop-shadow(0 14px 40px rgba(232, 181, 71, 0.5)); }
-      100% { filter: drop-shadow(0 12px 32px rgba(0,0,0,0.4)); }
+      z-index: 1;
     }
     .wheel-pointer {
       position: absolute;
@@ -551,8 +562,8 @@
         width: 320px;
         height: 320px;
       }
-      .wheel-svg {
-        filter: drop-shadow(0 16px 48px rgba(43, 33, 24, 0.18));
+      .wheel-wrap::before {
+        box-shadow: 0 16px 48px rgba(43, 33, 24, 0.18);
       }
       .wheel-pointer {
         border-top-color: var(--dark);
@@ -908,13 +919,14 @@
         const totalRotation = currentRotation + finalAngle - (currentRotation % 360);
         currentRotation = totalRotation;
 
-        wheelSvg.classList.add('is-spinning');
+        const wrap = document.querySelector('.wheel-wrap');
+        wrap.classList.add('is-spinning');
         wheelSvg.style.transform = `rotate(${totalRotation}deg)`;
 
         animatePointerTicks(turns, 7500);
 
         setTimeout(() => {
-          wheelSvg.classList.remove('is-spinning');
+          wrap.classList.remove('is-spinning');
           showReward(idx);
         }, 7600);
       }
