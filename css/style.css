@@ -202,7 +202,7 @@ ul {
   align-items: center;
 }
 
-.main-nav a {
+.main-nav a:not(.btn) {
   display: block;
   padding: 8px 18px;
   color: var(--color-text);
@@ -213,12 +213,12 @@ ul {
   position: relative;
 }
 
-.main-nav a:hover {
+.main-nav a:not(.btn):hover {
   color: var(--color-primary);
   background: rgba(198, 93, 52, 0.06);
 }
 
-.main-nav a.active {
+.main-nav a:not(.btn).active {
   color: var(--color-primary);
   background: rgba(198, 93, 52, 0.08);
 }
@@ -1687,7 +1687,7 @@ ul {
     gap: 4px;
   }
 
-  .main-nav a {
+  .main-nav a:not(.btn) {
     font-size: 1.1rem;
     padding: 14px 16px;
     border-radius: var(--radius-sm);
@@ -1914,8 +1914,6 @@ ul {
 
   .cta-buttons .btn {
     width: 100%;
-    padding: 14px 24px;
-    font-size: 0.85rem;
   }
 
   /* ====== CONTACT ====== */
