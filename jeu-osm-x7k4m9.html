@@ -198,38 +198,68 @@
       width: 100%;
       height: 100%;
       display: block;
-      transition: transform 5s cubic-bezier(0.17, 0.67, 0.21, 1.02);
+      transition: transform 7.5s cubic-bezier(0.12, 0.78, 0.18, 1);
       filter: drop-shadow(0 10px 30px rgba(43, 33, 24, 0.18));
+      will-change: transform;
+    }
+    .wheel-svg.is-spinning {
+      animation: wheelGlow 7.5s ease-out;
+    }
+    @keyframes wheelGlow {
+      0%   { filter: drop-shadow(0 10px 30px rgba(43, 33, 24, 0.18)); }
+      30%  { filter: drop-shadow(0 14px 40px rgba(198, 93, 52, 0.35)); }
+      100% { filter: drop-shadow(0 10px 30px rgba(43, 33, 24, 0.18)); }
     }
     .wheel-pointer {
       position: absolute;
-      top: -6px;
+      top: -10px;
       left: 50%;
       transform: translateX(-50%);
       width: 0;
       height: 0;
-      border-left: 14px solid transparent;
-      border-right: 14px solid transparent;
-      border-top: 22px solid var(--dark);
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+      border-left: 16px solid transparent;
+      border-right: 16px solid transparent;
+      border-top: 26px solid var(--dark);
+      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.3));
       z-index: 2;
+      transition: transform 0.15s ease;
+    }
+    .wheel-pointer.tick {
+      animation: pointerTick 0.08s ease-out;
+    }
+    @keyframes pointerTick {
+      0%   { transform: translateX(-50%) rotate(0deg); }
+      50%  { transform: translateX(-50%) rotate(-12deg); }
+      100% { transform: translateX(-50%) rotate(0deg); }
     }
     .wheel-hub {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 64px;
-      height: 64px;
+      width: 96px;
+      height: 96px;
       background: var(--white);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15), inset 0 0 0 4px var(--sand);
-      z-index: 1;
+      box-shadow:
+        0 6px 18px rgba(0,0,0,0.18),
+        0 0 0 6px var(--sand-light),
+        0 0 0 8px var(--primary),
+        inset 0 0 0 1px rgba(255,255,255,0.8);
+      z-index: 3;
     }
-    .wheel-hub img { width: 40px; height: 40px; }
+    .wheel-hub img {
+      width: 64px;
+      height: 64px;
+      animation: hubPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes hubPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
 
     /* === Reward === */
     .reward-icon {
@@ -642,19 +672,56 @@
         if (isSpinning) return;
         isSpinning = true;
         $('#spin-btn').disabled = true;
-        $('#spin-btn').textContent = 'Bonne chance...';
+        $('#spin-btn').textContent = 'Bonne chance…';
 
         const total = PRIZES.length;
         const arc = 360 / total;
         const idx = pickPrize();
-        const targetMidAngle = idx * arc + arc / 2;       // angle au centre du segment (depuis le haut)
-        const finalAngle = 360 * 6 - targetMidAngle;       // 6 tours, on aligne le segment sous le pointeur
+
+        // On vise le centre du segment + petit jitter aléatoire
+        // pour pas tomber pile au milieu à chaque fois
+        const jitter = (Math.random() - 0.5) * (arc * 0.7);
+        const targetMidAngle = idx * arc + arc / 2 + jitter;
+
+        // 9 tours minimum + un peu de hasard sur le nombre de tours
+        // pour que la durée et l'arrivée varient à chaque coup
+        const turns = 9 + Math.floor(Math.random() * 3);
+        const finalAngle = 360 * turns - targetMidAngle;
         const totalRotation = currentRotation + finalAngle - (currentRotation % 360);
         currentRotation = totalRotation;
 
+        wheelSvg.classList.add('is-spinning');
         wheelSvg.style.transform = `rotate(${totalRotation}deg)`;
 
-        setTimeout(() => { showReward(idx); }, 5100);
+        // Animation des "ticks" du pointeur — un coup à chaque segment qui passe
+        animatePointerTicks(turns, 7500);
+
+        setTimeout(() => {
+          wheelSvg.classList.remove('is-spinning');
+          showReward(idx);
+        }, 7600);
+      }
+
+      // Le pointeur "tape" à chaque segment qui passe sous lui (effet roue de la fortune)
+      function animatePointerTicks(turns, durationMs) {
+        const total = PRIZES.length;
+        const totalTicks = turns * total;
+        const pointer = $('.wheel-pointer');
+        // courbe ease-out : on tasse vers la fin pour suivre la décélération
+        for (let i = 1; i <= totalTicks; i++) {
+          const ratio = i / totalTicks;
+          // inverse de cubic-bezier ease-out approximé
+          const t = 1 - Math.pow(1 - ratio, 3);
+          const delay = t * durationMs;
+          // arrête de "tinter" trop près de la fin pour pas saturer l'oeil
+          if (delay > durationMs - 80) continue;
+          setTimeout(() => {
+            pointer.classList.remove('tick');
+            // forçage reflow pour rejouer l'animation
+            void pointer.offsetWidth;
+            pointer.classList.add('tick');
+          }, delay);
+        }
       }
 
       function showReward(idx) {
