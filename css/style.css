@@ -237,6 +237,11 @@ ul {
   color: var(--color-primary);
 }
 
+/* Footer du menu mobile : caché en desktop */
+.nav-footer {
+  display: none;
+}
+
 /* Navigation desktop */
 .main-nav ul {
   display: flex;
@@ -1067,18 +1072,12 @@ ul {
   position: absolute;
   inset: 0;
   background: url('../img/corde.webp') center/cover no-repeat;
-  opacity: 0.85;
   pointer-events: none;
   z-index: 0;
 }
 
 .cta-section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(250, 246, 241, 0.55) 0%, rgba(245, 237, 227, 0.45) 100%);
-  pointer-events: none;
-  z-index: 0;
+  content: none;
 }
 
 .cta-section > * {
@@ -1712,6 +1711,13 @@ ul {
     border: 1px solid rgba(255, 255, 255, 0.12);
   }
 
+  body.nav-open .mobile-cta {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 12px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
   .mobile-cta a:active {
     transform: scale(0.95);
     color: var(--color-white);
@@ -1824,6 +1830,7 @@ ul {
 
   /* Footer dans le menu : contact rapide */
   .nav-footer {
+    display: block;
     margin-top: 32px;
     padding-top: 24px;
     border-top: 1px solid rgba(30, 21, 15, 0.08);

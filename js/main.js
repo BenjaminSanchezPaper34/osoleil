@@ -14,6 +14,7 @@
   function openMenu() {
     nav.classList.add('open');
     overlay.classList.add('open');
+    document.body.classList.add('nav-open');
     if (toggle) toggle.classList.add('open');
     toggle.setAttribute('aria-expanded', 'true');
   }
@@ -21,6 +22,7 @@
   function closeMenu() {
     nav.classList.remove('open');
     overlay.classList.remove('open');
+    document.body.classList.remove('nav-open');
     if (toggle) toggle.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
   }
