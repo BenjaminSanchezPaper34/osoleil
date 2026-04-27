@@ -524,15 +524,72 @@
 
     /* === DESKTOP === */
     @media (min-width: 720px) {
-      .stage-photo { height: 28vh; max-height: 280px; }
+      body {
+        background:
+          radial-gradient(ellipse at top, rgba(212, 145, 58, 0.18) 0%, transparent 55%),
+          radial-gradient(ellipse at bottom right, rgba(198, 93, 52, 0.14) 0%, transparent 60%),
+          linear-gradient(160deg, var(--sand-light) 0%, var(--sand) 100%);
+      }
+      /* Photo + logo flottant masqués sur desktop */
+      .stage-photo,
+      .stage-logo {
+        display: none;
+      }
+      .stage {
+        align-items: center;
+        justify-content: center;
+        padding: 32px 24px;
+      }
+      .stage-wheel {
+        background: transparent;
+        flex: 0 0 auto;
+        padding: 0;
+        margin-bottom: -56px;
+        z-index: 1;
+      }
+      .wheel-wrap {
+        width: 320px;
+        height: 320px;
+      }
+      .wheel-svg {
+        filter: drop-shadow(0 16px 48px rgba(43, 33, 24, 0.18));
+      }
+      .wheel-pointer {
+        border-top-color: var(--dark);
+      }
       .stage-card {
-        max-width: 540px;
+        max-width: 480px;
+        width: 100%;
         margin: 0 auto;
-        border-radius: 28px;
-        margin-top: -32px;
-        margin-bottom: 32px;
-        padding: 40px 36px;
+        border-radius: 24px;
+        padding: 56px 40px 36px;
         min-height: auto;
+        box-shadow:
+          0 30px 80px rgba(43, 33, 24, 0.18),
+          0 8px 24px rgba(43, 33, 24, 0.06);
+        background: var(--white);
+        border: 1px solid var(--border);
+        position: relative;
+        z-index: 2;
+      }
+      .step-title {
+        font-family: var(--font-heading);
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+      /* Logo discret en haut du card */
+      .stage-card::before {
+        content: '';
+        display: block;
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 16px;
+        background: url('img/logo-osoleil.svg') center/contain no-repeat;
+      }
+      /* Petite citation italique sous les règles, façon DA O'Soleil */
+      .rules-icon {
+        font-size: 2.6rem;
       }
     }
   </style>
