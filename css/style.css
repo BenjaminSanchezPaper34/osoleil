@@ -1011,6 +1011,66 @@ body:has(.hero) .hero {
   text-align: center;
 }
 
+/* Encart Basilyk : avis + roue cadeaux */
+.reviews-reward {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 760px;
+  margin: 24px auto 0;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, var(--color-sand-light) 0%, var(--color-sand) 100%);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(43, 33, 24, 0.05);
+}
+
+.reviews-reward-icon {
+  font-size: 2.4rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 8px rgba(198, 93, 52, 0.25));
+}
+
+.reviews-reward-text {
+  flex: 1 1 auto;
+  text-align: left;
+}
+
+.reviews-reward-text h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  margin: 0 0 4px;
+  letter-spacing: 0.01em;
+}
+
+.reviews-reward-text p {
+  font-size: 0.92rem;
+  color: var(--color-text-light);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.reviews-reward .btn {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .reviews-reward {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 20px;
+    gap: 14px;
+  }
+  .reviews-reward-text {
+    text-align: center;
+  }
+  .reviews-reward-text h3 {
+    font-size: 1.2rem;
+  }
+}
+
 /* ============================================
    PARTENAIRES
    ============================================ */
@@ -1937,7 +1997,8 @@ body:has(.hero) .hero {
   /* ====== HERO ====== */
 
   .hero {
-    min-height: 70vh;
+    min-height: 88vh;
+    min-height: 88dvh;
   }
 
   .hero-scroll {
