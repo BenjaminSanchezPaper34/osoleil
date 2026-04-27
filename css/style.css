@@ -226,23 +226,67 @@ ul {
 /* Burger menu mobile */
 .nav-toggle {
   display: none;
-  background: none;
-  border: none;
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border: 1px solid rgba(30, 21, 15, 0.08);
   cursor: pointer;
-  padding: 8px;
+  padding: 0;
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-toggle:hover {
+  background: var(--color-white);
+  transform: scale(1.04);
+}
+
+.nav-toggle:active {
+  transform: scale(0.96);
 }
 
 .nav-toggle span {
   display: block;
-  width: 22px;
-  height: 2px;
+  position: absolute;
+  left: 50%;
+  height: 1.5px;
   background: var(--color-dark);
-  margin: 5px auto;
-  transition: all var(--transition);
   border-radius: 2px;
+  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1),
+              width 0.35s cubic-bezier(0.65, 0, 0.35, 1),
+              top 0.25s ease,
+              opacity 0.2s ease;
+}
+
+/* État fermé : 2 traits asymétriques (top 14px, bottom 11px) */
+.nav-toggle span:nth-child(1) {
+  width: 18px;
+  top: 16px;
+  transform: translateX(-50%);
+}
+.nav-toggle span:nth-child(2) {
+  width: 12px;
+  top: 24px;
+  transform: translateX(-50%);
+}
+.nav-toggle span:nth-child(3) {
+  display: none;
+}
+
+/* État ouvert : croix */
+.nav-toggle.open span:nth-child(1) {
+  width: 18px;
+  top: 21px;
+  transform: translateX(-50%) rotate(45deg);
+}
+.nav-toggle.open span:nth-child(2) {
+  width: 18px;
+  top: 21px;
+  transform: translateX(-50%) rotate(-45deg);
 }
 
 /* ============================================
@@ -1654,6 +1698,7 @@ ul {
 
   .nav-toggle {
     display: block;
+    flex-shrink: 0;
   }
 
   .main-nav {
@@ -1702,13 +1747,11 @@ ul {
   /* ====== LOGO MOBILE ====== */
 
   .logo .logo-banner {
-    display: none;
+    height: 32px;
   }
 
   .logo .logo-icon {
-    display: block;
-    height: 36px;
-    width: 36px;
+    display: none;
   }
 
   /* ====== HERO ====== */
