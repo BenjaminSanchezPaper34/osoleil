@@ -1267,9 +1267,9 @@ body:has(.hero) .hero {
 
 .menu-item-price {
   font-family: var(--font-heading);
-  font-weight: 500;
+  font-weight: 700;
   color: var(--color-primary);
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   white-space: nowrap;
   margin-left: 16px;
   letter-spacing: 0.02em;
