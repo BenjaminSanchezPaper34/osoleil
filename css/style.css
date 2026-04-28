@@ -298,7 +298,7 @@ body:has(.hero) .hero {
 /* Burger menu mobile */
 .nav-toggle {
   display: none;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   -webkit-backdrop-filter: saturate(180%) blur(14px);
   backdrop-filter: saturate(180%) blur(14px);
   border: 1px solid rgba(30, 21, 15, 0.08);
@@ -308,9 +308,10 @@ body:has(.hero) .hero {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  z-index: 250;
+  z-index: 300;
   transition: background var(--transition-fast), transform var(--transition-fast);
   -webkit-tap-highlight-color: transparent;
+  isolation: isolate;
 }
 
 .nav-toggle:hover {
@@ -393,12 +394,12 @@ body:has(.hero) .hero {
   display: block;
 }
 
-/* Vidéo hero : pleine bordure, masquée pour les utilisateurs reduce-motion */
-@media (prefers-reduced-motion: reduce) {
-  .hero-video {
-    /* on remplace par l'image poster, le navigateur s'en charge avec poster="…" */
-    pointer-events: none;
-  }
+/* La vidéo est purement décorative : on désactive ses interactions pour
+   que le burger et les CTA du hero restent cliquables au-dessus. */
+.hero-video {
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  user-select: none;
 }
 
 /* Voile sombre par-dessus la vidéo pour faire ressortir le texte du hero */
