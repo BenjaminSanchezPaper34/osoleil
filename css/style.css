@@ -2015,8 +2015,8 @@ body:has(.hero) .hero {
   /* ====== HERO ====== */
 
   .hero {
-    min-height: 88vh;
-    min-height: 88dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   .hero-scroll {
