@@ -188,19 +188,22 @@ body:has(.hero) .hero {
   margin-top: 0;
 }
 
-.site-header.hero-logo-visible .main-nav {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
+/* Centrage de la nav au-dessus du hero (desktop uniquement) */
+@media (min-width: 769px) {
+  .site-header.hero-logo-visible .main-nav {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-.site-header.hero-logo-visible .main-nav ul {
-  background: none;
-  border: none;
-  border-radius: 0;
-  padding: 0;
-  gap: 4px;
+  .site-header.hero-logo-visible .main-nav ul {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    gap: 4px;
+  }
 }
 
 .site-header.hero-logo-visible .main-nav a:not(.btn) {
