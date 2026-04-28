@@ -115,6 +115,28 @@
   }
   </script>
 
+  <!-- Schema.org — VideoObject (hero reel) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Brasserie O'Soleil — Marseillan, terrasse sur le port",
+    "description": "Reportage en images de la Brasserie O'Soleil sur le port de Marseillan : terrasse face à l'étang de Thau, fruits de mer et cuisine méditerranéenne.",
+    "thumbnailUrl": "https://osoleil-marseillan.fr/img/web/hero-reel-poster.jpg",
+    "contentUrl": "https://osoleil-marseillan.fr/img/web/hero-reel.mp4",
+    "uploadDate": "2026-04-28",
+    "duration": "PT26S",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Brasserie O'Soleil",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://osoleil-marseillan.fr/img/logo-osoleil.svg"
+      }
+    }
+  }
+  </script>
+
   <!-- Schema.org — FAQPage -->
   <script type="application/ld+json">
   {
@@ -226,16 +248,15 @@
 
   <!-- ========== HERO ========== -->
   <section class="hero">
-    <picture class="hero-bg">
-      <source type="image/webp"
-              srcset="img/web/hero-port-marseillan-800.webp 800w, img/web/hero-port-marseillan-1280.webp 1280w, img/web/hero-port-marseillan-1920.webp 1920w"
-              sizes="100vw">
-      <img src="img/web/hero-port-marseillan-1280.jpg"
-           alt="Vue aérienne du port de Marseillan, restaurant Brasserie O'Soleil"
-           loading="eager"
-           fetchpriority="high"
-           width="1920" height="1280">
-    </picture>
+    <video class="hero-bg hero-video"
+           autoplay muted loop playsinline preload="metadata"
+           poster="img/web/hero-reel-poster.jpg"
+           aria-label="Brasserie O'Soleil — port de Marseillan, terrasse face à l'étang de Thau"
+           width="720" height="1280">
+      <source src="img/web/hero-reel.mp4" type="video/mp4">
+      <!-- Fallback image si la vidéo ne charge pas -->
+      <img src="img/web/hero-reel-poster.jpg" alt="Brasserie O'Soleil sur le port de Marseillan">
+    </video>
     <div class="hero-content">
       <img src="img/logo-osoleil-hero.svg" alt="Brasserie O'Soleil" class="hero-logo" width="480" height="240">
       <h1 class="sr-only">Brasserie O'Soleil</h1>

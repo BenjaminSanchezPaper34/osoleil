@@ -384,12 +384,21 @@ body:has(.hero) .hero {
   overflow: hidden;
 }
 
-.hero-bg img {
+.hero-bg img,
+.hero-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
+}
+
+/* Vidéo hero : pleine bordure, masquée pour les utilisateurs reduce-motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    /* on remplace par l'image poster, le navigateur s'en charge avec poster="…" */
+    pointer-events: none;
+  }
 }
 
 .hero-bg::after {
