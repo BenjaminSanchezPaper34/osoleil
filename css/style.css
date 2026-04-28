@@ -206,20 +206,23 @@ body:has(.hero) .hero {
   }
 }
 
-.site-header.hero-logo-visible .main-nav a:not(.btn) {
-  color: rgba(255, 255, 255, 0.92);
-}
+/* Texte clair de la nav uniquement sur le hero desktop */
+@media (min-width: 769px) {
+  .site-header.hero-logo-visible .main-nav a:not(.btn) {
+    color: rgba(255, 255, 255, 0.92);
+  }
 
-.site-header.hero-logo-visible .main-nav a:not(.btn):hover,
-.site-header.hero-logo-visible .main-nav a:not(.btn).active {
-  color: var(--color-white);
-  background: rgba(255, 255, 255, 0.12);
-}
+  .site-header.hero-logo-visible .main-nav a:not(.btn):hover,
+  .site-header.hero-logo-visible .main-nav a:not(.btn).active {
+    color: var(--color-white);
+    background: rgba(255, 255, 255, 0.12);
+  }
 
-.site-header.hero-logo-visible .main-nav a.btn-primary {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-white);
+  .site-header.hero-logo-visible .main-nav a.btn-primary {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+  }
 }
 
 .header-inner {
