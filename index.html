@@ -33,9 +33,13 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="img/logo-osoleil.svg">
 
-  <!-- Google Fonts -->
+  <!-- Preload du poster vidéo (LCP critical) -->
+  <link rel="preload" as="image" href="img/web/hero-reel-poster.webp" type="image/webp" fetchpriority="high">
+
+  <!-- Google Fonts + Adobe Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
   <link rel="stylesheet" href="https://use.typekit.net/gve0ixw.css">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400;1,500&display=swap" rel="stylesheet">
 
@@ -73,13 +77,26 @@
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
         "opens": "09:30",
-        "closes": "14:30"
+        "closes": "14:30",
+        "validFrom": "2026-02-01",
+        "validThrough": "2026-12-31"
       },
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
         "opens": "19:00",
-        "closes": "22:00"
+        "closes": "22:00",
+        "validFrom": "2026-02-01",
+        "validThrough": "2026-12-31"
+      }
+    ],
+    "specialOpeningHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "validFrom": "2026-01-01",
+        "validThrough": "2026-01-31",
+        "opens": "00:00",
+        "closes": "00:00"
       }
     ],
     "sameAs": [
@@ -95,7 +112,89 @@
       "ratingValue": "4.4",
       "bestRating": "5",
       "ratingCount": "1599"
-    }
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Katia S." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "datePublished": "2026-03-15",
+        "reviewBody": "Excellent, de nombreux produits faits maison, et cela se sent au palais ! Rapport qualité-prix parfait !",
+        "publisher": { "@type": "Organization", "name": "Tripadvisor" }
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Tennessee L." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "datePublished": "2025-06-12",
+        "reviewBody": "Un vrai bijou à Marseillan ! Une ambiance chaleureuse, une équipe aux petits soins et une cuisine qui sent bon le fait maison.",
+        "publisher": { "@type": "Organization", "name": "Tripadvisor" }
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Olivier D." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "datePublished": "2025-10-04",
+        "reviewBody": "Super rapport qualité-prix, mention spéciale à la parillada royale de la mer. Les nouveaux propriétaires se donnent à fond !",
+        "publisher": { "@type": "Organization", "name": "Tripadvisor" }
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "francescomuratore69" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "datePublished": "2025-10-01",
+        "reviewBody": "Les huîtres gratinées au Noilly Prat en suggestion étaient succulentes et la poêlée de coquillages, une tuerie.",
+        "publisher": { "@type": "Organization", "name": "Tripadvisor" }
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Claire B." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "datePublished": "2025-07-18",
+        "reviewBody": "Merveilleuse parillada, la meilleure que j'ai mangée ! Personnel prévenant, à l'écoute, une très bonne adresse !",
+        "publisher": { "@type": "Organization", "name": "Tripadvisor" }
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Stéphanie M." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "datePublished": "2025-07-31",
+        "reviewBody": "Une adresse formidable tant pour la qualité de la cuisine que pour le service. Nous reviendrons avec plaisir !",
+        "publisher": { "@type": "Organization", "name": "Tripadvisor" }
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "RenaudDeBâgé" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "datePublished": "2025-08-18",
+        "reviewBody": "Service au top ! C'est pro, ça percute, avec le sourire et les plats sont généreux et bons. On aime !",
+        "publisher": { "@type": "Organization", "name": "Tripadvisor" }
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Andy W." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "datePublished": "2025-09-26",
+        "reviewBody": "Friendly and attentive service at this port side restaurant. Good selection of dishes, reasonably priced and well presented.",
+        "publisher": { "@type": "Organization", "name": "Google" }
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Lucile R." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "datePublished": "2024-04-18",
+        "reviewBody": "Très bonne qualité des entrées aux desserts. Personnel très serviable et professionnel. Je recommande vivement !",
+        "publisher": { "@type": "Organization", "name": "Google" }
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Fabrice H." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "datePublished": "2024-10-21",
+        "reviewBody": "Un restaurant charmant avec un personnel excellent. La cuisine, juste merci, nous reviendrons sans aucun doute !",
+        "publisher": { "@type": "Organization", "name": "Google" }
+      }
+    ]
   }
   </script>
 
