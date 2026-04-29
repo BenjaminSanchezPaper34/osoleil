@@ -8,9 +8,6 @@
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="fr" href="https://osoleil-marseillan.fr/"/>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="en" href="https://osoleil-marseillan.fr/en/"/>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="x-default" href="https://osoleil-marseillan.fr/"/>
     <image:image>
       <image:loc>https://osoleil-marseillan.fr/img/web/hero-reel-poster.jpg</image:loc>
       <image:title>Brasserie O'Soleil — terrasse sur le port de Marseillan</image:title>
@@ -54,16 +51,6 @@
     <lastmod>2026-04-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://osoleil-marseillan.fr/en/</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="fr" href="https://osoleil-marseillan.fr/"/>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="en" href="https://osoleil-marseillan.fr/en/"/>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="x-default" href="https://osoleil-marseillan.fr/"/>
   </url>
 
 </urlset>

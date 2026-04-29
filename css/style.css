@@ -273,33 +273,6 @@ body:has(.hero) .hero {
   display: none;
 }
 
-/* Toggle FR ↔ EN dans la nav */
-.main-nav .lang-switch a:not(.btn) {
-  display: inline-block;
-  padding: 6px 12px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  border: 1px solid rgba(30, 21, 15, 0.15);
-  border-radius: 50px;
-  color: var(--color-text-light);
-  text-transform: uppercase;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-.main-nav .lang-switch a:not(.btn):hover {
-  color: var(--color-primary);
-  border-color: var(--color-primary);
-}
-.site-header.hero-logo-visible .main-nav .lang-switch a:not(.btn) {
-  color: rgba(255, 255, 255, 0.9);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-.site-header.hero-logo-visible .main-nav .lang-switch a:not(.btn):hover {
-  color: var(--color-white);
-  border-color: var(--color-white);
-  background: rgba(255, 255, 255, 0.12);
-}
-
 /* Navigation desktop */
 .main-nav ul {
   display: flex;
@@ -435,19 +408,19 @@ body:has(.hero) .hero {
   user-select: none;
 }
 
-/* Voile sombre par-dessus la vidéo pour faire ressortir le texte du hero */
+/* Voile sombre subtil pour la lisibilité du texte (préserve la qualité de la vidéo) */
 .hero::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at center, rgba(30, 21, 15, 0.25) 0%, rgba(30, 21, 15, 0.55) 100%),
+    radial-gradient(ellipse at center, rgba(30, 21, 15, 0.05) 0%, rgba(30, 21, 15, 0.3) 100%),
     linear-gradient(
       180deg,
-      rgba(30, 21, 15, 0.55) 0%,
-      rgba(30, 21, 15, 0.4) 40%,
-      rgba(30, 21, 15, 0.65) 80%,
-      rgba(30, 21, 15, 0.85) 100%
+      rgba(30, 21, 15, 0.35) 0%,
+      rgba(30, 21, 15, 0.15) 35%,
+      rgba(30, 21, 15, 0.4) 75%,
+      rgba(30, 21, 15, 0.7) 100%
     );
   z-index: 1;
   pointer-events: none;
