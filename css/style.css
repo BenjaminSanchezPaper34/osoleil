@@ -1314,6 +1314,18 @@ body:has(.hero) .hero {
   background: var(--color-primary);
 }
 
+/* Sous-catégorie : Entrées/Plats/Desserts au choix dans un menu */
+.menu-subcategory {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--color-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 32px 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--color-border);
+}
+
 .menu-grid {
   display: grid;
   gap: 4px;

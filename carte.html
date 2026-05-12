@@ -87,11 +87,52 @@
       },
       {
         "@type": "MenuSection",
-        "name": "Menu O'Soleil",
+        "name": "Menu O'Soleil — Midi & Soir",
+        "description": "Menu complet avec choix d'entrée, plat et dessert.",
         "hasMenuItem": [
           {"@type": "MenuItem", "name": "Entrée + Plat + Dessert", "offers": {"@type": "Offer", "price": "32.50", "priceCurrency": "EUR"}},
           {"@type": "MenuItem", "name": "Entrée + Plat", "offers": {"@type": "Offer", "price": "29.00", "priceCurrency": "EUR"}},
-          {"@type": "MenuItem", "name": "Entrée + Dessert", "offers": {"@type": "Offer", "price": "27.00", "priceCurrency": "EUR"}}
+          {"@type": "MenuItem", "name": "Plat + Dessert", "offers": {"@type": "Offer", "price": "27.00", "priceCurrency": "EUR"}}
+        ],
+        "hasMenuSection": [
+          {
+            "@type": "MenuSection",
+            "name": "Entrées au choix",
+            "hasMenuItem": [
+              {"@type": "MenuItem", "name": "Trilogie de l'écailler", "description": "3 huîtres N°3 de l'étang de Thau, 3 crevettes roses, 3 bulots, aïoli"},
+              {"@type": "MenuItem", "name": "Salade Caesar", "description": "Filets de poulet panés, œuf poché, grana padano, tomates, concombres, olives noires, sauce Caesar"},
+              {"@type": "MenuItem", "name": "Gravlax Maison de Saumon", "description": "Crème d'aneth & baies roses"},
+              {"@type": "MenuItem", "name": "Assiette de 6 huîtres N°3 de l'étang de Thau"},
+              {"@type": "MenuItem", "name": "Soupe de poissons", "description": "Avec rouille maison et croûtons"},
+              {"@type": "MenuItem", "name": "Carpaccio de Bœuf Français", "description": "Roquette, pesto maison, grana padano (+5 € avec burratina)"},
+              {"@type": "MenuItem", "name": "Foie gras de canard Maison au muscat de Frontignan", "description": "Confiture et toasts briochés (supplément 3 € au menu)"}
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Plats au choix",
+            "hasMenuItem": [
+              {"@type": "MenuItem", "name": "Suprême de poulet façon forestière", "description": "Origine France, écrasé de pomme de terre maison et sauce champignons"},
+              {"@type": "MenuItem", "name": "Dorade entière grillée à la plancha", "description": "300/400 g, persillade maison"},
+              {"@type": "MenuItem", "name": "Belles crevettes géantes (gambas)", "description": "Grillées en persillade maison, flambées au pastis"},
+              {"@type": "MenuItem", "name": "Seiches marinées grillées à la plancha", "description": "Persillade et aïoli maison"},
+              {"@type": "MenuItem", "name": "Éventail de magret de canard grillé", "description": "Origine UE, sauce au choix incluse"},
+              {"@type": "MenuItem", "name": "Fish'n chips de cabillaud", "description": "Aïoli maison, frites"}
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Desserts au choix",
+            "hasMenuItem": [
+              {"@type": "MenuItem", "name": "Crème brûlée Maison à la pistache", "description": "Chantilly maison"},
+              {"@type": "MenuItem", "name": "Tiramisú Maison traditionnel", "description": "Café & amaretto"},
+              {"@type": "MenuItem", "name": "Tarte Citron Meringuée à l'Italienne", "description": "Avec son verre de Limoncello"},
+              {"@type": "MenuItem", "name": "Pralinette — Gourmandise artisanale glacée", "description": "Crème glacée vanille de Madagascar, meringue, pralin noisette, chantilly, coulis fruits rouges"},
+              {"@type": "MenuItem", "name": "Beau baba au rhum traditionnel", "description": "Raisins bruns, chantilly, rhum ambré"},
+              {"@type": "MenuItem", "name": "Profiterole géante à la vanille", "description": "Chocolat chaud maison & chantilly"},
+              {"@type": "MenuItem", "name": "Coupe glacée au choix", "description": "Chocolat liégeois, café liégeois ou Dame blanche"}
+            ]
+          }
         ]
       },
       {
@@ -254,6 +295,7 @@
       <!-- ==================== MENU O'SOLEIL ==================== -->
       <div class="menu-section" id="menu-osoleil">
         <h2 class="menu-category">Menu O'Soleil</h2>
+        <p class="menu-note" style="margin-bottom: 16px;">Midi &amp; Soir</p>
         <div class="menu-grid">
           <div class="menu-item">
             <div><div class="menu-item-name">Entrée + Plat + Dessert</div></div>
@@ -268,6 +310,145 @@
             <div class="menu-item-price">27 €</div>
           </div>
         </div>
+
+        <!-- Entrées au choix -->
+        <h3 class="menu-subcategory">Entrées au choix</h3>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Trilogie de l'écailler</div>
+              <div class="menu-item-desc">3 huîtres N°3 de l'étang de Thau, 3 crevettes roses, 3 bulots, aïoli</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Salade Caesar</div>
+              <div class="menu-item-desc">Filets de poulet panés aux céréales croustillantes, œuf poché, grana padano, tomates, concombres, olives noires, oignons rouges, sauce Caesar</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Gravlax Maison de Saumon</div>
+              <div class="menu-item-desc">Fait par nos soins, crème d'aneth &amp; baies roses</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Assiette de 6 huîtres N°3 de l'étang de Thau</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Soupe de poissons</div>
+              <div class="menu-item-desc">Avec sa rouille maison et ses croûtons</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Carpaccio de Bœuf Français</div>
+              <div class="menu-item-desc">Roquette, pesto maison, grana padano <em>— petit plaisir&nbsp;: ajoutez une burratina entière pour&nbsp;+5&nbsp;€</em></div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Foie gras de canard Maison au muscat de Frontignan</div>
+              <div class="menu-item-desc">Confiture et toasts briochés <em>— supplément de&nbsp;+3&nbsp;€ au menu</em></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plats au choix -->
+        <h3 class="menu-subcategory">Plats au choix</h3>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Suprême de poulet façon forestière</div>
+              <div class="menu-item-desc">Origine France, écrasé de pomme de terre maison et sauce champignons maison</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Dorade entière grillée à la plancha</div>
+              <div class="menu-item-desc">300/400&nbsp;g, en persillade maison</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Belles crevettes géantes (gambas)</div>
+              <div class="menu-item-desc">Grillées en persillade maison et flambées au pastis</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Seiches marinées grillées à la plancha</div>
+              <div class="menu-item-desc">Persillade et aïoli maison</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Éventail de magret de canard grillé</div>
+              <div class="menu-item-desc">Origine UE, sauce au choix incluse</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Fish'n chips de cabillaud</div>
+              <div class="menu-item-desc">Aïoli maison, frites</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desserts au choix -->
+        <h3 class="menu-subcategory">Desserts au choix</h3>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Crème brûlée Maison à la pistache</div>
+              <div class="menu-item-desc">Chantilly maison</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Tiramisú Maison traditionnel</div>
+              <div class="menu-item-desc">Café &amp; amaretto</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Tarte Citron Meringuée à l'Italienne</div>
+              <div class="menu-item-desc">Avec son petit verre de Limoncello</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">« Pralinette » — Gourmandise artisanale glacée</div>
+              <div class="menu-item-desc">Crème glacée vanille de Madagascar, cœur de meringue, pralin noisette, chantilly maison, coulis fruits rouges</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Beau baba au rhum traditionnel</div>
+              <div class="menu-item-desc">Raisins bruns, chantilly et rhum ambré</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Profiterole géante à la vanille</div>
+              <div class="menu-item-desc">Chocolat chaud maison &amp; chantilly maison</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Coupe glacée au choix</div>
+              <div class="menu-item-desc">Chocolat liégeois, café liégeois ou Dame blanche (glace vanille, chocolat maison, chantilly)</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="menu-note" style="margin-top: 20px;">
+          <strong>Sauces au choix en supplément +1,50&nbsp;€</strong>&nbsp;: Bleu d'Auvergne, picpoul à la crème, miel, aïoli, forestière, crème tartufata.<br>
+          <strong>Accompagnement inclus</strong>&nbsp;: frites <em>ou</em> salade <em>ou</em> écrasé de pomme de terre maison &amp; petits légumes <em>ou</em> riz. <em>Accompagnement supplémentaire +1,50&nbsp;€.</em>
+        </p>
       </div>
 
       <!-- ==================== ENTRÉES ==================== -->
