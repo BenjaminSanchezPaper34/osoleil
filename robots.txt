@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /jeu-osm-
 
-Sitemap: https://osoleil-marseillan.fr/sitemap.xml
+Sitemap: https://www.osoleil-marseillan.fr/sitemap.xml
